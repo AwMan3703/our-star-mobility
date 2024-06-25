@@ -1,0 +1,4 @@
+
+function hasLocalCreds() {
+    sessionStorage.getItem()
+}
