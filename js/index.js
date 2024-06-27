@@ -1,42 +1,7 @@
-import { IDCard, TravelPass } from "./classes.js";
+import { getCardPasses, getCards } from "./localStorage";
 let CURRENT_IDCARD_INDEX = 0;
 let IDCARDS = [];
 let CURRENT_IDCARD_PASSES = [];
-// LOCALSTORAGE STUFF
-const localStorageCardListKey = 'IDCards';
-function getCards() {
-    const cards = [];
-    const JSONCards = JSON.parse(localStorage.getItem(localStorageCardListKey) || "[]");
-    JSONCards.forEach((card) => {
-        if (typeof card === typeof IDCard) {
-            // @ts-ignore
-            cards.push(new IDCard.FromJSON(card));
-        }
-    });
-    return cards;
-}
-function setCards(cards) {
-    const JSONCards = [];
-    cards.forEach((card) => { JSONCards.push(card.toJSON()); });
-    localStorage.setItem(localStorageCardListKey, JSON.stringify(JSONCards));
-}
-const localStorageCardDataKey = (card) => `${card.number}-TravelPasses`;
-function getCardPasses(card) {
-    const passes = [];
-    const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardDataKey(card)) || "[]");
-    JSONPasses.forEach((pass) => {
-        if (typeof pass === typeof TravelPass) {
-            // @ts-ignore
-            cards.push(new IDCard.FromJSON(card));
-        }
-    });
-    return passes;
-}
-function setCardPasses(card, passes) {
-    const JSONPasses = [];
-    passes.forEach((pass) => { JSONPasses.push(pass.toJSON()); });
-    localStorage.setItem(localStorageCardDataKey(card), JSON.stringify(JSONPasses));
-}
 // UTILITY
 function capitalize(text) {
     return text[0].toUpperCase() + text.substring(1, text.length);
@@ -164,9 +129,11 @@ function _new_passCard(card, pass, pass_number) {
 }
 function refresh_passes() {
     const carousel = document.getElementById('passes-carousel');
+    // @ts-ignore
     carousel.innerHTML = '';
     let counter = 0;
     CURRENT_IDCARD_PASSES.forEach(pass => {
+        // @ts-ignore
         carousel.appendChild(_new_passCard(getCurrentCard(), pass, counter + 1));
         counter += 1;
     });

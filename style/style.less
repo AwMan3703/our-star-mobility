@@ -1,6 +1,77 @@
 
 :root {
+	--color-layer: rgba(0, 0, 0, .075);
+
 	--theme-color-darkblue: #102D69;
 	--theme-color-lightblue: #00B0F0;
 	--theme-color-yellow: #FFD200;
+
+	--padding-min: 5px;
+	--padding-medium: 10px;
+}
+
+body {
+	&:extend(.vstack);
+	gap: var(--padding-medium);
+}
+
+.vstack {
+	display: flex;
+	flex-direction: column;
+}
+.hstack {
+	display: flex;
+	flex-direction: row;
+}
+
+.material-box {
+	background-color: var(--color-layer);
+	padding: var(--padding-medium);
+	gap: var(--padding-medium);
+	border-radius: var(--padding-medium);
+}
+.material-box:has(> .material-box) { border-radius: calc(2 * var(--padding-medium)); }
+.material-box:has(> .material-box:has(> .material-box)) { border-radius: calc(3 * var(--padding-medium)); }
+.material-box:has(> .material-box:has(> .material-box:has(> .material-box))) { border-radius: calc(4 * var(--padding-medium)); }
+.material-box:has(> .material-box:has(> .material-box:has(> .material-box:has(> .material-box)))) { border-radius: calc(5 * var(--padding-medium)); }
+
+.material-border {
+	border-style: solid;
+	border-width: 2px;
+	border-color: var(--theme-color-darkblue);
+}
+
+button {
+	&:extend(.material-box);
+	cursor: pointer;
+	background-color: var(--theme-color-darkblue);
+	color: white;
+}
+button:disabled {
+	opacity: 0.6;
+}
+button:active {
+	background-color: var(--theme-color-yellow);
+}
+
+div:has(> input[type="checkbox"]),
+div:has(> label[for*="checkbox"]) {
+	&:extend(.hstack);
+}
+
+#IDCard-form.disabled * {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#invalid-form-warning {
+	&:extend(.material-box);
+	background-color: transparent;
+	padding: var(--padding-min);
+	&:extend(.material-border);
+	display: none;
+	border-color: red;
+	color: red;
+}
+#invalid-form-warning.visible {
+	display: block;
 }

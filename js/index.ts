@@ -1,43 +1,10 @@
-import {Human, IDCard, TravelPass} from "./classes.js"
+import {IDCard, TravelPass} from "./classes.js"
+import {getCardPasses, getCards} from "./localStorage";
 
 let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = []
 let CURRENT_IDCARD_PASSES:TravelPass[] = []
 
-
-// LOCALSTORAGE STUFF
-
-const localStorageCardListKey: string = 'IDCards'
-function getCards() {
-    const cards:IDCard[] = []
-    const JSONCards = JSON.parse(localStorage.getItem(localStorageCardListKey) || "[]")
-    JSONCards.forEach((card:{}|null) => {if (typeof card === typeof IDCard) {
-        // @ts-ignore
-        cards.push(new IDCard.FromJSON(card))
-    }})
-    return cards
-}
-function setCards(cards:IDCard[]) {
-    const JSONCards:{}[] = []
-    cards.forEach((card:IDCard) => {JSONCards.push(card.toJSON())})
-    localStorage.setItem(localStorageCardListKey, JSON.stringify(JSONCards))
-}
-
-const localStorageCardDataKey = (card:IDCard) => `${card.number}-TravelPasses`
-function getCardPasses(card:IDCard) {
-    const passes:TravelPass[] = []
-    const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardDataKey(card)) || "[]")
-    JSONPasses.forEach((pass:{}|null) => {if (typeof pass === typeof TravelPass) {
-        // @ts-ignore
-        cards.push(new IDCard.FromJSON(card))
-    }})
-    return passes
-}
-function setCardPasses(card:IDCard, passes:TravelPass[]) {
-    const JSONPasses:{}[] = []
-    passes.forEach((pass:TravelPass) => {JSONPasses.push(pass.toJSON())})
-    localStorage.setItem(localStorageCardDataKey(card), JSON.stringify(JSONPasses))
-}
 
 // UTILITY
 
@@ -198,10 +165,12 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
 }
 
 function refresh_passes() {
-    const carousel:HTMLElement = document.getElementById('passes-carousel')
+    const carousel = document.getElementById('passes-carousel')
+    // @ts-ignore
     carousel.innerHTML = ''
     let counter:number = 0
     CURRENT_IDCARD_PASSES.forEach(pass => {
+        // @ts-ignore
         carousel.appendChild(_new_passCard(getCurrentCard(), pass, counter + 1))
         counter += 1
     })
