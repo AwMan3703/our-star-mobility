@@ -4,9 +4,45 @@
     <meta charset="UTF-8">
     <title>Add ID card</title>
 
+    <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="./style/style.css">
 </head>
     <body>
-        <iframe src="README.md"></iframe>
+        <div id="disclaimer-box" class="vstack material-box">
+            <h3>Per favore leggere con attenzione il seguente disclaimer:</h3>
+            <iframe src="README.md"></iframe>
+            <div class="material-box">
+                <input type="checkbox" name="agree" id="disclaimer-agree-checkbox">
+                <label for="disclaimer-agree-checkbox">Comprendo il disclaimer e sollevo lo Sviluppatore da qualsiasi responsabilità derivante dall'utilizzo che farò del Simulatore</label>
+            </div>
+        </div>
+
+        <div id="IDCard-form" class="vstack material-box">
+            <div id="invalid-form-warning">Compilare tutti i campi</div>
+
+            <h2>Aggiungi una tessera</h2>
+
+            <input id="number" type="text" pattern="/([0-9])\w+/g" minlength="6" maxlength="6" placeholder="Numero tessera">
+
+            <div class="material-box">
+                <h3>Dati titolare</h3>
+                <div class="hstack">
+                    <input id="holder-firstName" type="text" placeholder="Nome">
+                    <input id="holder-lastName" type="text" placeholder="Cognome">
+                </div>
+                <div class="hstack">
+                    <label for="holder-birthDate">Data di nascita:</label>
+                    <input id="holder-birthDate" type="date" placeholder="Data di nascita">
+                </div>
+                <input id="holder-TAXID" type="text" minlength="16" maxlength="16" placeholder="Codice fiscale">
+            </div>
+
+            <label for="photo">Fototessera:</label>
+            <input id="photo" type="file" accept="image/*" placeholder="Fototessera">
+
+            <button id="submit-button" type="submit" onclick="/*Callback gets automatically added in script*/">Aggiungi tessera</button>
+        </div>
+
+        <script src="js/addIDCard.js" type="module"></script>
     </body>
 </html>
