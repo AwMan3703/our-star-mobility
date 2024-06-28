@@ -1,15 +1,12 @@
-import { getCardPasses, getCards } from "./localStorage";
+import { getCardPasses, getCards } from "./localStorage.js";
+import { capitalize } from './utility.js';
 let CURRENT_IDCARD_INDEX = 0;
-let IDCARDS = [];
+let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
-// UTILITY
-function capitalize(text) {
-    return text[0].toUpperCase() + text.substring(1, text.length);
-}
+// FUNCTIONS
 function getCurrentCard() {
     return IDCARDS[CURRENT_IDCARD_INDEX];
 }
-// UI
 function _new_passCard(card, pass, pass_number) {
     const container = document.createElement('div');
     container.classList.add('pass-card-container');
@@ -66,9 +63,9 @@ function _new_passCard(card, pass, pass_number) {
     idcard_details_container.appendChild(idcard_pass_expiry_time);
     idcard_container.appendChild(idcard_details_container);
     //
-    const idcard_photo = document.createElement('img');
+    const idcard_photo = document.createElement('div');
     idcard_photo.classList.add('pass-card-idcard-photo');
-    idcard_photo.src = card.photoDataURL;
+    idcard_photo.style.backgroundImage = `url("${card.photoDataURL}")`;
     idcard_container.appendChild(idcard_photo);
     const idcard_stripes = document.createElement('div');
     idcard_stripes.classList.add('pass-card-idcard-stripes');
@@ -141,10 +138,17 @@ function refresh_passes() {
 function selectIDCard(index) {
     CURRENT_IDCARD_INDEX = index;
     CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[index]);
+    console.log(`Current IDCard has ${CURRENT_IDCARD_PASSES.length} passes`);
     refresh_passes();
 }
 // SCRIPT
-if (getCards().length < 1)
-    window.location.replace('addIDCard.html');
+const IDCard_count = getCards().length;
+if (IDCard_count < 1) {
+    console.warn('No IDCard detected, redirecting to addIDCard...');
+    //redirect('addIDCard.html')
+}
+else {
+    console.info(`${IDCard_count} IDCard(s) found`);
+}
 // Do this so everything gets properly loaded
 selectIDCard(0);

@@ -1,22 +1,17 @@
 import {IDCard, TravelPass} from "./classes.js"
-import {getCardPasses, getCards} from "./localStorage";
+import {getCardPasses, getCards} from "./localStorage.js";
+import {capitalize, redirect} from './utility.js'
 
 let CURRENT_IDCARD_INDEX: number = 0
-let IDCARDS:IDCard[] = []
+let IDCARDS:IDCard[] = getCards()
 let CURRENT_IDCARD_PASSES:TravelPass[] = []
 
 
-// UTILITY
-
-function capitalize(text: string) {
-    return text[0].toUpperCase() + text.substring(1, text.length)}
+// FUNCTIONS
 
 function getCurrentCard() {
     return IDCARDS[CURRENT_IDCARD_INDEX]
 }
-
-
-// UI
 
 function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLElement {
     const container = document.createElement('div')
@@ -88,9 +83,9 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
             idcard_container.appendChild(idcard_details_container)
             //
 
-        const idcard_photo = document.createElement('img')
+        const idcard_photo = document.createElement('div')
         idcard_photo.classList.add('pass-card-idcard-photo')
-        idcard_photo.src = card.photoDataURL
+        idcard_photo.style.backgroundImage = `url("${card.photoDataURL}")`
         idcard_container.appendChild(idcard_photo)
 
         const idcard_stripes = document.createElement('div')
@@ -179,17 +174,19 @@ function refresh_passes() {
 function selectIDCard(index: number) {
     CURRENT_IDCARD_INDEX = index
     CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[index])
+    console.log(`Current IDCard has ${CURRENT_IDCARD_PASSES.length} passes`)
     refresh_passes()
 }
 
 // SCRIPT
 
-if (getCards().length < 1) window.location.replace('addIDCard.html')
+const IDCard_count = getCards().length
+if (IDCard_count < 1) {
+    console.warn('No IDCard detected, redirecting to addIDCard...')
+    //redirect('addIDCard.html')
+} else {
+    console.info(`${IDCard_count} IDCard(s) found`)
+}
 
 // Do this so everything gets properly loaded
 selectIDCard(0)
-
-
-
-
-

@@ -6,11 +6,7 @@
   --padding-min: 5px;
   --padding-medium: 10px;
 }
-body {
-  gap: var(--padding-medium);
-}
-.vstack,
-body {
+.vstack {
   display: flex;
   flex-direction: column;
 }
@@ -21,8 +17,7 @@ div:has(> label[for*="checkbox"]) {
   flex-direction: row;
 }
 .material-box,
-button,
-#invalid-form-warning {
+button {
   background-color: var(--color-layer);
   padding: var(--padding-medium);
   gap: var(--padding-medium);
@@ -40,8 +35,7 @@ button,
 .material-box:has( > .material-box:has( > .material-box:has( > .material-box:has(> .material-box)))) {
   border-radius: calc(5 * var(--padding-medium));
 }
-.material-border,
-#invalid-form-warning {
+.material-border {
   border-style: solid;
   border-width: 2px;
   border-color: var(--theme-color-darkblue);
@@ -57,17 +51,4 @@ button:disabled {
 button:active {
   background-color: var(--theme-color-yellow);
 }
-#IDCard-form.disabled * {
-  color: rgba(0, 0, 0, 0.5);
-}
-#invalid-form-warning {
-  background-color: transparent;
-  padding: var(--padding-min);
-  display: none;
-  border-color: red;
-  color: red;
-}
-#invalid-form-warning.visible {
-  display: block;
-}
-/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=generic.css.map */

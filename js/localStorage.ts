@@ -1,4 +1,4 @@
-import {IDCard, TravelPass} from "./classes.js";
+import {Human, IDCard, TravelPass} from "./classes.js";
 
 // LOCALSTORAGE STUFF
 
@@ -6,10 +6,14 @@ const localStorageCardListKey: string = 'IDCards'
 export function getCards() {
     const cards:IDCard[] = []
     const JSONCards = JSON.parse(localStorage.getItem(localStorageCardListKey) || "[]")
-    JSONCards.forEach((card:{}|null) => {if (typeof card === typeof IDCard) {
+    JSONCards.forEach((card:{
+        number: string
+        holder: Human
+        photoDataURL: string
+    }) => {
         // @ts-ignore
-        cards.push(new IDCard.FromJSON(card))
-    }})
+        cards.push(IDCard.FromJSON(card))
+    })
     return cards
 }
 export function setCards(cards:IDCard[]) {
@@ -18,18 +22,29 @@ export function setCards(cards:IDCard[]) {
     localStorage.setItem(localStorageCardListKey, JSON.stringify(JSONCards))
 }
 
-const localStorageCardDataKey = (card:IDCard) => `${card.number}-TravelPasses`
+const localStorageCardPassesKey = (card:IDCard) => `${card.number}-TravelPasses`
 export function getCardPasses(card:IDCard) {
     const passes:TravelPass[] = []
-    const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardDataKey(card)) || "[]")
-    JSONPasses.forEach((pass:{}|null) => {if (typeof pass === typeof TravelPass) {
+    const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardPassesKey(card)) || "[]")
+    JSONPasses.forEach((pass:{
+        from: string
+        to: string
+        line: string
+        type: string
+        period: string;
+        price: number
+        rate: string
+        purchase: string
+        expiry: string
+        service: string
+    }) => {
         // @ts-ignore
-        cards.push(new IDCard.FromJSON(card))
-    }})
+        cards.push(TravelPass.FromJSON(pass))
+    })
     return passes
 }
 export function setCardPasses(card:IDCard, passes:TravelPass[]) {
     const JSONPasses:{}[] = []
     passes.forEach((pass:TravelPass) => {JSONPasses.push(pass.toJSON())})
-    localStorage.setItem(localStorageCardDataKey(card), JSON.stringify(JSONPasses))
+    localStorage.setItem(localStorageCardPassesKey(card), JSON.stringify(JSONPasses))
 }

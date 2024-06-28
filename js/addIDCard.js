@@ -1,9 +1,10 @@
 import { Human, IDCard } from "./classes.js";
 import { getCards, setCards } from "./localStorage.js";
+import { redirect } from "./utility.js";
 // CONSTANTS
 const form_inputs = document.querySelectorAll('#IDCard-form input, #IDCard-form button');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
-// UTILITY
+// FUNCTIONS
 function readFormData() {
     const getValue = (selector) => {
         // @ts-ignore
@@ -35,6 +36,8 @@ function addCard() {
     const formData = readFormData();
     const card = makeIDCard(formData);
     saveIDCard(card);
+    alert('Tessera aggiunta');
+    redirect('index.html');
 }
 function validate_form() {
     for (const input of form_inputs) {

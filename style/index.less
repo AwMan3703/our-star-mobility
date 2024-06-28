@@ -1,0 +1,38 @@
+@import "generic";
+
+body {
+	&:extend(.vstack);
+	justify-content: space-between;
+	height: 100dvh;
+	align-items: stretch;
+}
+
+.shadow {
+	box-shadow: 0 2px 5px 0px rgba(0, 0, 0, .5);
+}
+
+nav {
+	&:extend(.hstack);
+	&:extend(.shadow);
+  	width: 100%;
+	align-items: center;
+	justify-content: space-between;
+  	background-color: var(--theme-color-darkblue);
+}
+
+nav img {
+	height: 2.75vh;
+	padding: var(--padding-medium);
+}
+/*WHY WOULD THEY MAKE THE MENU ICON SMALLER*/
+nav #menu-icon { height: 2.25vh; }
+
+#buttons {
+	&:extend(.hstack);
+	width: 100%;
+	justify-content: space-around;
+}
+
+#buttons button {
+	&:extend(.shadow);
+}
