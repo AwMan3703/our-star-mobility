@@ -73,10 +73,10 @@ function validate_form() {
         // @ts-ignore
         if (input.type==='file') {
             // @ts-ignore
-            if (String(input.value)=='') { return false }
+            if (input.files===undefined || input.files.length===0) { return false }
         } else {
             // @ts-ignore
-            if (input.files==undefined || input.files.length==0) { return false }
+            if (String(input.value)==='') { return false }
         }
     }
     return true
