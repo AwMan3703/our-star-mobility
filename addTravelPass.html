@@ -6,7 +6,7 @@
 
     <link rel="stylesheet" href="./style/reset.css">
     <link rel="stylesheet" href="style/generic.css">
-    <link rel="stylesheet" href="style/addIDCard.css">
+    <link rel="stylesheet" href="style/addTravelPass.css">
 </head>
     <body>
         <div id="disclaimer-box" class="vstack material-box">
@@ -18,30 +18,20 @@
             </div>
         </div>
 
-        <div id="IDCard-form" class="vstack material-box">
+        <div id="IDCard-selector">
+        </div>
+
+        <div id="TravelPass-form" class="vstack material-box">
             <div id="invalid-form-warning">Compilare tutti i campi</div>
 
-            <h2>Aggiungi una tessera</h2>
+            <h2>Aggiungi un titolo di viaggio</h2>
 
             <input id="number" type="text" pattern="/([0-9])\w+/g" minlength="6" maxlength="6" placeholder="Numero tessera">
-
-            <div class="material-box">
-                <h3>Dati titolare</h3>
-                <div class="hstack">
-                    <input id="holder-firstName" type="text" placeholder="Nome">
-                    <input id="holder-lastName" type="text" placeholder="Cognome">
-                </div>
-                <div class="hstack">
-                    <label for="holder-birthDate">Data di nascita:</label>
-                    <input id="holder-birthDate" type="date" placeholder="Data di nascita">
-                </div>
-                <input id="holder-TAXID" type="text" minlength="16" maxlength="16" placeholder="Codice fiscale">
-            </div>
 
             <label for="photo">Fototessera:</label>
             <input id="photo" type="file" accept="image/*" placeholder="Fototessera">
 
-            <button id="submit-button" type="submit" onclick="/*Callback gets automatically added in script*/">Aggiungi tessera</button>
+            <button id="submit-button" type="submit" onclick="/*Callback gets automatically added in script*/">Aggiungi titolo</button>
         </div>
 
         <script src="js/addIDCard.js" type="module"></script>
