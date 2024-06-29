@@ -110,7 +110,7 @@ function addTravelPass() {
         return;
     }
     saveTravelPass(targetCard, pass);
-    alert('Titolo aggiunto');
+    alert(`Titolo aggiunto alla tessera ${targetCard.number}`);
     redirect('index.html');
 }
 // SCRIPT
