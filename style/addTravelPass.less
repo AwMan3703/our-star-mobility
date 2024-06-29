@@ -1,23 +1,33 @@
 @import "generic";
 
 body {
-  &:extend(.vstack);
-  gap: var(--padding-medium);
+	&:extend(.vstack);
+	margin: revert;
+	gap: var(--padding-medium);
 }
 
-#IDCard-form.disabled * {
-  color: rgba(0, 0, 0, 0.5);
+#IDCard-selector {
+	gap: var(--padding-medium);
 }
 
 #invalid-form-warning {
-  &:extend(.material-box);
-  background-color: transparent;
-  padding: var(--padding-min);
-  &:extend(.material-border);
-  display: none;
-  border-color: red;
-  color: red;
+	&:extend(.material-box);
+	background-color: transparent;
+	padding: var(--padding-min);
+	&:extend(.material-border);
+	display: none;
+	border-color: red;
+	color: red;
 }
 #invalid-form-warning.visible {
-  display: block;
+	display: block;
+}
+
+#TravelPass-form.disabled * {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+#TravelPass-form .example {
+	margin-block-start: -.7em;
+	color: rgba(0, 0, 0, .3);
 }
