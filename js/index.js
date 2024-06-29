@@ -118,9 +118,9 @@ function _new_passCard(card, pass, pass_number) {
     holder_taxID.classList.add('pass-card-holdertaxID');
     holder_taxID.innerText = `${card.holder.TAXID.toUpperCase()}`;
     container.appendChild(holder_taxID);
-    const qrcode = document.createElement('img');
+    const qrcode = document.createElement('div');
     qrcode.classList.add('pass-card-qrcode');
-    qrcode.src = '../src/qrcode.jpeg';
+    qrcode.style.backgroundImage = `url("${pass.qrcodeDataURL}"`;
     container.appendChild(qrcode);
     return container;
 }

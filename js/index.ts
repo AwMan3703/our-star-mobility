@@ -151,9 +151,9 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
     holder_taxID.innerText = `${card.holder.TAXID.toUpperCase()}`
     container.appendChild(holder_taxID)
 
-    const qrcode = document.createElement('img')
+    const qrcode = document.createElement('div')
     qrcode.classList.add('pass-card-qrcode')
-    qrcode.src = '../src/qrcode.jpeg'
+    qrcode.style.backgroundImage = `url("${pass.qrcodeDataURL}"`
     container.appendChild(qrcode)
 
     return container

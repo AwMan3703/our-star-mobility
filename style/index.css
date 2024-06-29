@@ -1,8 +1,3 @@
-@media (pointer: none), (pointer: coarse) {
-  :root {
-    zoom: 4;
-  }
-}
 :root {
   --color-layer: rgba(0, 0, 0, 0.075);
   --theme-color-darkblue: #102D69;
@@ -86,7 +81,7 @@ nav,
   box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
 nav {
-  width: 100%;
+  width: 100dvw;
   padding: var(--padding-medium);
   align-items: center;
   justify-content: space-between;
