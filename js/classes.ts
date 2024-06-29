@@ -67,7 +67,7 @@ export class IDCard {
 }
 
 export class TravelPass {
-    constructor(from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, expiry: Date, service: string) {
+    constructor(from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, expiry: Date, service: string, qrcodeDataURL: string) {
         this.from = from
         this.to = to
         this.line = line
@@ -78,6 +78,8 @@ export class TravelPass {
         this.purchase = purchase
         this.expiry = expiry
         this.service = service
+        this.qrcodeDataURL = qrcodeDataURL
+
     }
     // boarding
     from: string
@@ -99,6 +101,8 @@ export class TravelPass {
     expiry: Date
     // service (e.g. extraurbano Lodi)
     service: string
+    // qrcode object blob
+    qrcodeDataURL: string
 
     static FromJSON(json:{
         from: string
@@ -111,6 +115,7 @@ export class TravelPass {
         purchase: string
         expiry: string
         service: string
+        qrcodeDataURL: string
     }) {
         return new TravelPass(
             json.from,
@@ -122,7 +127,8 @@ export class TravelPass {
             json.rate,
             new Date(json.purchase),
             new Date(json.expiry),
-            json.service
+            json.service,
+            json.qrcodeDataURL
         )
     }
     toJSON() {
@@ -136,7 +142,8 @@ export class TravelPass {
             rate: this.rate,
             purchase: this.purchase.toJSON(),
             expiry: this.expiry.toJSON(),
-            service: this.service
+            service: this.service,
+            qrcodeDataURL: this.qrcodeDataURL
         }
     }
 }

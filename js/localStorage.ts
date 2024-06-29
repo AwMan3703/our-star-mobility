@@ -39,7 +39,7 @@ export function getCardPasses(card:IDCard) {
         service: string
     }) => {
         // @ts-ignore
-        cards.push(TravelPass.FromJSON(pass))
+        passes.push(TravelPass.FromJSON(pass))
     })
     return passes
 }
