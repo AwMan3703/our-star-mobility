@@ -1,4 +1,10 @@
 
+@media (pointer:none), (pointer:coarse) {
+	:root {
+		zoom: 4;
+	}
+}
+
 :root {
 	--color-layer: rgba(0, 0, 0, .075);
 
@@ -17,6 +23,12 @@
 .hstack {
 	display: flex;
 	flex-direction: row;
+}
+.vscroll {
+	overflow-y: scroll;
+}
+.hscroll {
+	overflow-x: scroll;
 }
 
 .material-box {
@@ -44,12 +56,17 @@ button {
 }
 button:disabled {
 	opacity: 0.6;
+	color: rgba(255, 255, 255, .6);
 }
 button:active {
 	background-color: var(--theme-color-yellow);
 }
 
+div:has(> input[type="radio"]),
 div:has(> input[type="checkbox"]),
+div:has(> label[for*="radio"]),
 div:has(> label[for*="checkbox"]) {
 	&:extend(.hstack);
+	width: fit-content;
+	align-items: baseline;
 }

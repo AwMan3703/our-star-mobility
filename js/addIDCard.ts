@@ -1,6 +1,6 @@
-import {Human, IDCard} from "./classes.js";
-import {getCards, setCards} from "./localStorage.js";
-import {redirect} from "./utility.js";
+import {Human, IDCard} from "./classes.js"
+import {getCards, setCards} from "./localStorage.js"
+import {redirect} from "./utility.js"
 
 
 // CONSTANTS
@@ -14,32 +14,57 @@ const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox')
 function readFormData() {
     const getValue = (selector: string) => {
         // @ts-ignore
-        return document.querySelector(selector).value;
+        return document.querySelector(selector).value
+    }
+    const invalidFields: string[] = []
+    const checkValid = (value: any | null, name: string) => {
+        if (value===undefined || !value) invalidFields.push(name)
     }
 
-    return {
-        number: String(getValue('#IDCard-form #number')),
+    const number = getValue('#IDCard-form #number')
+    checkValid(number, 'Numero della tessera')
+    const firstName = getValue('#IDCard-form #holder-firstName')
+    checkValid(firstName, 'Nome del titolare')
+    const lastName = getValue('#IDCard-form #holder-lastName')
+    checkValid(lastName, 'Cognome del titolare')
+    const date = getValue('#IDCard-form #holder-birthDate')
+    checkValid(date, 'Data di nascita del titolare')
+    const taxid = getValue('#IDCard-form #holder-TAXID')
+    checkValid(taxid, 'Codice fiscale del titolare')
+    // @ts-ignore
+    const photoDataURL = document.querySelector('#IDCard-form #photo').files[0]
+    checkValid(photoDataURL, 'Fototessera del titolare')
+
+    if (invalidFields.length > 0) {
+        let message = 'Inserire i dati mancanti: '
+        for (const field of invalidFields) {
+            message += `\n- ${field}`
+        }
+        alert(message)
+        return null
+    } else {
+        return {
+        number: String(number),
         holder: {
-            firstName: String(getValue('#IDCard-form #holder-firstName')),
-            lastName: String(getValue('#IDCard-form #holder-lastName')),
-            // @ts-ignore
-            birthDate: new Date(getValue('#IDCard-form #holder-birthDate')),
-            TAXID: String(getValue('#IDCard-form #holder-TAXID'))
+            firstName: String(firstName),
+            lastName: String(lastName),
+            birthDate: new Date(date),
+            TAXID: String(taxid)
         },
-        // @ts-ignore
-        photoDataURL: URL.createObjectURL(document.querySelector('#IDCard-form #photo').files[0])
+        photoDataURL: URL.createObjectURL(photoDataURL)
+        }
     }
 }
 
 function makeIDCard(data: {
-    number: string;
+    number: string
     holder: {
-        firstName: string;
-        lastName: string;
-        birthDate: Date;
-        TAXID: string;
-    };
-    photoDataURL: string;
+        firstName: string
+        lastName: string
+        birthDate: Date
+        TAXID: string
+    }
+    photoDataURL: string
 }):IDCard {
     const holder = new Human(
         data.holder.firstName,
@@ -62,35 +87,11 @@ function saveIDCard(card:IDCard) {
 
 function addCard() {
     const formData = readFormData()
+    if (!formData) return
     const card = makeIDCard(formData)
     saveIDCard(card)
     alert('Tessera aggiunta')
     redirect('index.html')
-}
-
-function validate_form() {
-    for (const input of form_inputs) {
-        // @ts-ignore
-        if (input.type==='file') {
-            // @ts-ignore
-            if (input.files===undefined || input.files.length===0) { return false }
-        } else {
-            // @ts-ignore
-            if (String(input.value)==='') { return false }
-        }
-    }
-    return true
-}
-
-function form_change() {
-    const invalidFormWarning = document.getElementById('invalid-form-warning')
-    if (!validate_form()) {
-        // @ts-ignore
-        invalidFormWarning.classList.add('visible')
-    } else {
-        // @ts-ignore
-        invalidFormWarning.classList.remove('visible')
-    }
 }
 
 
@@ -112,7 +113,6 @@ disclaimer_checkbox.addEventListener('change', _=> {
     }
 })
 
-form_inputs.forEach(form_input => {form_input.addEventListener('change', form_change)})
 form_inputs.forEach(form_input => {form_input.setAttribute('disabled', "true")})
 // @ts-ignore
 document.getElementById('IDCard-form').classList.add('disabled')
