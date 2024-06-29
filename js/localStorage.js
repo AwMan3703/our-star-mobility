@@ -21,7 +21,7 @@ export function getCardPasses(card) {
     const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardPassesKey(card)) || "[]");
     JSONPasses.forEach((pass) => {
         // @ts-ignore
-        cards.push(TravelPass.FromJSON(pass));
+        passes.push(TravelPass.FromJSON(pass));
     });
     return passes;
 }

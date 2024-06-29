@@ -37,7 +37,7 @@ export class IDCard {
     }
 }
 export class TravelPass {
-    constructor(from, to, line, type, period, price, rate, purchase, expiry, service) {
+    constructor(from, to, line, type, period, price, rate, purchase, expiry, service, qrcodeDataURL) {
         this.from = from;
         this.to = to;
         this.line = line;
@@ -48,9 +48,10 @@ export class TravelPass {
         this.purchase = purchase;
         this.expiry = expiry;
         this.service = service;
+        this.qrcodeDataURL = qrcodeDataURL;
     }
     static FromJSON(json) {
-        return new TravelPass(json.from, json.to, json.line, json.type, json.period, json.price, json.rate, new Date(json.purchase), new Date(json.expiry), json.service);
+        return new TravelPass(json.from, json.to, json.line, json.type, json.period, json.price, json.rate, new Date(json.purchase), new Date(json.expiry), json.service, json.qrcodeDataURL);
     }
     toJSON() {
         return {
@@ -63,7 +64,8 @@ export class TravelPass {
             rate: this.rate,
             purchase: this.purchase.toJSON(),
             expiry: this.expiry.toJSON(),
-            service: this.service
+            service: this.service,
+            qrcodeDataURL: this.qrcodeDataURL
         };
     }
 }
