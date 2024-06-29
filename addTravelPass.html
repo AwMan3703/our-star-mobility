@@ -31,14 +31,14 @@
 
             <input id="from" type="text" placeholder="Origine della tratta">
             <span class="example">es: Pavia</span>
-            <input id="to" type="text" placeholder="Capolinea della tratta (es: Lodi)">
-            <span class="example"></span>
-            <input id="line" type="text" maxlength="4" placeholder="Linea (es: s001)">
-            <span class="example"></span>
-            <input id="type" type="text" placeholder="Tipologia del titolo (es: Mensile)">
-            <span class="example"></span>
-            <input id="period" type="text" placeholder="Periodo di validità (es: 01 GEN 2024 - 30 GIU 2024)">
-            <span class="example"></span>
+            <input id="to" type="text" placeholder="Capolinea della tratta">
+            <span class="example">es: Lodi</span>
+            <input id="line" type="text" maxlength="4" placeholder="Linea">
+            <span class="example">es: s001</span>
+            <input id="type" type="text" placeholder="Tipologia del titolo">
+            <span class="example">es: Annuale</span>
+            <input id="period" type="text" placeholder="Periodo di validità">
+            <span class="example">es: 01 GEN 2024 - 30 GIU 2024</span>
             <div class="hstack">
                 <label for="price" style="margin-inline-end: 5px">Prezzo: €</label>
                 <input id="price" type="number" min="0.01" max="999.99" placeholder="XX,xx" style="max-width: 70px">
@@ -53,10 +53,10 @@
                 <input id="expiry-date" type="date">
                 <input id="expiry-time" type="time">
             </div>
-            <input id="rate" type="text" placeholder="Tariffa (es: 003)">
-            <span class="example"></span>
-            <input id="service" type="text" placeholder="Servizio (es: extraurbano Lodi)">
-            <span class="example"></span>
+            <input id="rate" type="text" placeholder="Tariffa">
+            <span class="example">es: 003</span>
+            <input id="service" type="text" placeholder="Servizio">
+            <span class="example">es: extraurbano Lodi</span>
 
             <button id="submit-button" type="submit" onclick="/*Callback gets automatically added in script*/">Aggiungi titolo</button>
         </div>

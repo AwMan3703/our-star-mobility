@@ -44,14 +44,14 @@ function readFormData() {
         return null
     } else {
         return {
-        number: String(number),
-        holder: {
-            firstName: String(firstName),
-            lastName: String(lastName),
-            birthDate: new Date(date),
-            TAXID: String(taxid)
-        },
-        photoDataURL: URL.createObjectURL(photoDataURL)
+            number: String(number),
+            holder: {
+                firstName: String(firstName),
+                lastName: String(lastName),
+                birthDate: new Date(date),
+                TAXID: String(taxid)
+            },
+            photoDataURL: URL.createObjectURL(photoDataURL)
         }
     }
 }

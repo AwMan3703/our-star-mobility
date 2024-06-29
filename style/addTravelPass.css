@@ -96,6 +96,7 @@ body {
   color: rgba(0, 0, 0, 0.5);
 }
 #TravelPass-form .example {
+  font-family: monospace;
   margin-block-start: -0.7em;
   color: rgba(0, 0, 0, 0.3);
 }
