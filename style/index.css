@@ -7,7 +7,8 @@
   --padding-medium: 10px;
 }
 .vstack,
-body {
+body,
+.pass-card {
   display: flex;
   flex-direction: column;
 }
@@ -17,7 +18,8 @@ div:has(> input[type="checkbox"]),
 div:has(> label[for*="radio"]),
 div:has(> label[for*="checkbox"]),
 nav,
-#buttons {
+#buttons,
+.pass-card .validity-label-container {
   display: flex;
   flex-direction: row;
 }
@@ -73,7 +75,6 @@ div:has(> label[for*="checkbox"]) {
 body {
   justify-content: space-between;
   height: 100dvh;
-  align-items: stretch;
 }
 .shadow,
 nav,
@@ -97,5 +98,27 @@ nav #menu-icon {
 #buttons {
   width: 100%;
   justify-content: space-around;
+}
+.pass-card {
+  align-items: center;
+  color: white;
+  background-color: var(--theme-color-darkblue);
+}
+.pass-card .logo {
+  width: 400px;
+}
+.pass-card .validity-label-container {
+  justify-content: space-between;
+  width: 100%;
+}
+.pass-card .validity-label-container::before,
+.pass-card .validity-label-container::after {
+  content: '';
+  width: 60px;
+  background-image: url("../src/check.png");
+  background-position: center center;
+  background-repeat: no-repeat;
+  aspect-ratio: 1;
+  background-color: limegreen;
 }
 /*# sourceMappingURL=index.css.map */

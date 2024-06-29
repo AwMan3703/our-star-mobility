@@ -4,7 +4,6 @@ body {
 	&:extend(.vstack);
 	justify-content: space-between;
 	height: 100dvh;
-	align-items: stretch;
 }
 
 .shadow {
@@ -35,4 +34,31 @@ nav #menu-icon { height: 2.25vh; }
 
 #buttons button {
 	&:extend(.shadow);
+}
+
+.pass-card {
+	&:extend(.vstack);
+	align-items: center;
+	color: white;
+	background-color: var(--theme-color-darkblue);
+}
+
+.pass-card .logo {
+	width: 400px;
+}
+
+.pass-card .validity-label-container {
+	&:extend(.hstack);
+	justify-content: space-between;
+	width: 100%;
+}
+.pass-card .validity-label-container::before,
+.pass-card .validity-label-container::after {
+	content: '';
+	width: 60px;
+	background-image: url("../src/check.png");
+	background-position: center center;
+	background-repeat: no-repeat;
+	aspect-ratio: 1;
+	background-color: limegreen;
 }
