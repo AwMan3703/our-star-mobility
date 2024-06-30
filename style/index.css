@@ -75,8 +75,6 @@ div:has(> label[for*="checkbox"]) {
   align-items: baseline;
 }
 body {
-  /*Remove thiss*/
-  opacity: 0.45;
   height: 100dvh;
   background-image: url("../src/_reference/home.png");
   background-repeat: no-repeat;
