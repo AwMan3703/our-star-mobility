@@ -212,16 +212,8 @@ nav img {
 .pass-card .idcard-container .idcard-detailscontainer .idcard-details:last-child {
   margin-block-end: 0;
 }
-.pass-card .idcard-container .idcard-detailscontainer .idcard-passtype {
-  font-size: var(--text-large);
-  font-weight: bold;
-}
 .pass-card .idcard-container .idcard-detailscontainer .idcard-passperiod {
   font-size: var(--text-medium);
-}
-.pass-card .idcard-container .idcard-detailscontainer .idcard-passpurchase-date {
-  font-size: var(--text-large);
-  font-weight: bold;
 }
 .pass-card .idcard-container .idcard-photo-container {
   grid-area: 1 / 2;
