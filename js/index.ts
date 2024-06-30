@@ -24,10 +24,11 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
 
     const validity_label_container = document.createElement('div')
     validity_label_container.classList.add('validity-label-container')
+    validity_label_container.classList.add(`${pass.expiry >= new Date(Date()) ? 'valid' : 'expired'}-pass`)
 
     const validity_label = document.createElement('p')
     validity_label.classList.add('validity-label')
-    validity_label.innerText = `abbonamento ${pass.expiry >= new Date() ? 'valido' : 'scaduto'}`
+    validity_label.innerText = `abbonamento ${pass.expiry >= new Date(Date()) ? 'valido' : 'scaduto'}`
     validity_label_container.appendChild(validity_label)
 
     container.appendChild(validity_label_container)
@@ -144,6 +145,8 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
         card_number.classList.add('details-number')
         card_number.innerText = `Nº titolo: ${pass_number}`
         details_container.appendChild(card_number)
+
+        container.appendChild(details_container)
         //
 
     const holder_name = document.createElement('p')
@@ -165,7 +168,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, pass_number:number):HTMLEle
 }
 
 function refresh_passes() {
-    const carousel = document.getElementById('passes-carousel')
+    const carousel = document.getElementById('pass-cards-carousel')
     // @ts-ignore
     carousel.innerHTML = ''
     let counter:number = 0

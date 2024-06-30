@@ -3,8 +3,11 @@
   --theme-color-darkblue: #102D69;
   --theme-color-lightblue: #00B0F0;
   --theme-color-yellow: #FFD200;
+  --padding-micro: 2px;
   --padding-min: 5px;
   --padding-medium: 10px;
+  --padding-max: 20px;
+  --padding-macro: 30px;
 }
 .vstack,
 body,
@@ -73,8 +76,12 @@ div:has(> label[for*="checkbox"]) {
   align-items: baseline;
 }
 body {
-  justify-content: space-between;
+  /*Remove thiss*/
+  opacity: 0.65;
   height: 100dvh;
+  background-image: url("../src/_reference/home.png");
+  background-repeat: no-repeat;
+  background-size: contain;
 }
 .shadow,
 nav,
@@ -82,43 +89,100 @@ nav,
   box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.5);
 }
 nav {
-  width: 100dvw;
-  padding: var(--padding-medium);
-  align-items: center;
+  box-sizing: border-box;
+  max-width: 100%;
+  height: 6vh;
+  padding-block-start: 25px;
+  padding-inline: calc(2 * var(--padding-max));
+  align-items: start;
   justify-content: space-between;
   background-color: var(--theme-color-darkblue);
 }
 nav img {
-  height: 2.75vh;
-}
-/*WHY WOULD THEY MAKE THE MENU ICON SMALLER*/
-nav #menu-icon {
-  height: 2.25vh;
+  height: 60%;
 }
 #buttons {
   width: 100%;
   justify-content: space-around;
 }
+#pass-cards-carousel {
+  margin-block: var(--padding-medium);
+  margin-inline: var(--padding-max);
+}
 .pass-card {
+  font-family: system-ui;
+  --text-small: 10px;
+  --text-medium: 35px;
+  --text-large: 45px;
+  font-size: 16px;
   align-items: center;
   color: white;
   background-color: var(--theme-color-darkblue);
+  border-radius: 35px;
+}
+.pass-card p {
+  margin: 0;
 }
 .pass-card .logo {
-  width: 400px;
+  height: 102px;
+  margin-block: 17px;
 }
 .pass-card .validity-label-container {
+  align-items: center;
   justify-content: space-between;
   width: 100%;
+  margin-block: 7px;
 }
 .pass-card .validity-label-container::before,
 .pass-card .validity-label-container::after {
   content: '';
-  width: 60px;
-  background-image: url("../src/check.png");
+  width: 100px;
+  height: 75px;
   background-position: center center;
+  background-size: 53%;
   background-repeat: no-repeat;
   aspect-ratio: 1;
-  background-color: limegreen;
+}
+.pass-card .validity-label-container::before {
+  border-radius: 0 15px 15px 0;
+}
+.pass-card .validity-label-container::after {
+  border-radius: 15px 0 0 15px;
+}
+.pass-card .validity-label-container.valid-pass::before,
+.pass-card .validity-label-container.valid-pass::after {
+  background-image: url("../src/check.png");
+  background-color: #96C05B;
+}
+.pass-card .validity-label-container.expired-pass::before,
+.pass-card .validity-label-container.expired-pass::after {
+  background-image: url("../src/xmark.png");
+  background-color: #B20808;
+}
+.pass-card .validity-label {
+  font-size: var(--text-medium);
+  text-transform: uppercase;
+  margin: 0;
+}
+.pass-card .idcard-number {
+  text-transform: uppercase;
+  margin-block-start: 14px;
+  margin-inline-start: auto;
+  margin-inline-end: 50px;
+}
+.pass-card .divider {
+  width: 100%;
+}
+.pass-card .route-title {
+  text-transform: uppercase;
+  margin-block-start: 4px;
+}
+.pass-card .route {
+  font-size: var(--text-large);
+  text-transform: uppercase;
+  text-align: center;
+}
+.pass-card .idcard-container {
+  background-color: #E0EBEF;
 }
 /*# sourceMappingURL=index.css.map */
