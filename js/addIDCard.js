@@ -89,3 +89,7 @@ document.getElementById('IDCard-form').classList.add('disabled');
 const submit_button = document.querySelector('#IDCard-form #submit-button');
 // @ts-ignore
 submit_button.onclick = addCard;
+// Prevent unborn people from adding an ID Card
+const birthDate_input = document.getElementById('holder-birthDate');
+// @ts-ignore
+birthDate_input.max = new Date().toISOString().split('T')[0];
