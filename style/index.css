@@ -239,9 +239,8 @@ nav img {
   text-transform: capitalize;
 }
 .pass-card .holder-name {
-  font-size: calc(var(--text-large) - 2px);
-  font-weight: bold;
-  text-transform: capitalize;
+  font-size: var(--text-large);
+  text-transform: uppercase;
   text-wrap: nowrap;
   margin-block-start: -5px;
 }
