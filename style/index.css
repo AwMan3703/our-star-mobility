@@ -76,14 +76,16 @@ div:has(> label[for*="checkbox"]) {
 }
 body {
   height: 100dvh;
-  background-image: url("../src/_reference/home.png");
-  background-repeat: no-repeat;
-  background-size: contain;
+  /*background-image: url("../src/_reference/home.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	*/
 }
 .shadow,
 nav,
-#buttons button {
-  box-shadow: 0 2px 5px 0px rgba(0, 0, 0, 0.5);
+#buttons button,
+.pass-card {
+  box-shadow: 0 7px 15px 0px rgba(0, 0, 0, 0.5);
 }
 nav {
   box-sizing: border-box;
@@ -113,6 +115,7 @@ nav img {
   --text-medium: 35px;
   --text-large: 45px;
   --text-bigger: 4px;
+  --hr-width: 2px;
   align-items: center;
   overflow: hidden;
   color: white;
@@ -176,6 +179,7 @@ nav img {
 }
 .pass-card .divider {
   width: 100%;
+  border-width: var(--hr-width);
 }
 .pass-card .route-title {
   font-size: var(--text-medium);
@@ -226,26 +230,31 @@ nav img {
 .pass-card .details-container {
   font-size: var(--text-small);
   width: calc(100% - 76px);
+  align-items: center;
   gap: 36px;
-  margin-block-start: 14px;
+  margin-block: 14px;
 }
 .pass-card .details-container div {
   width: 50%;
 }
 .pass-card .details-container hr {
   margin: 0;
+  height: 100%;
+  height: 100px;
+  border-width: var(--hr-width);
 }
 .pass-card .details-container .details {
+  line-height: 1.1em;
   text-transform: capitalize;
 }
 .pass-card .holder-name {
-  font-size: var(--text-large);
+  font-size: var(--text-medium);
   text-transform: uppercase;
   text-wrap: nowrap;
   margin-block-start: -5px;
 }
 .pass-card .holder-taxID {
-  font-size: var(--text-medium);
+  font-size: var(--text-small);
   text-wrap: nowrap;
   margin-block-start: -5px;
 }
