@@ -12,7 +12,7 @@ function _new_passCard(card, pass, i) {
     container.classList.add('pass-card');
     const logo = document.createElement('img');
     logo.classList.add('logo');
-    logo.src = '../src/logo_white.png';
+    logo.src = './src/logo_white.png';
     container.appendChild(logo);
     const validity_label_container = document.createElement('div');
     validity_label_container.classList.add('validity-label-container');

@@ -21,7 +21,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 
     const logo = document.createElement('img')
     logo.classList.add('logo')
-    logo.src = '../src/logo_white.png'
+    logo.src = './src/logo_white.png'
     container.appendChild(logo)
 
     const validity_label_container = document.createElement('div')
