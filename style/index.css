@@ -21,8 +21,7 @@ div:has(> input[type="checkbox"]),
 div:has(> label[for*="radio"]),
 div:has(> label[for*="checkbox"]),
 nav,
-#buttons,
-.pass-card .validity-label-container {
+#buttons {
   display: flex;
   flex-direction: row;
 }
@@ -77,7 +76,7 @@ div:has(> label[for*="checkbox"]) {
 }
 body {
   /*Remove thiss*/
-  opacity: 0.65;
+  opacity: 0.45;
   height: 100dvh;
   background-image: url("../src/_reference/home.png");
   background-repeat: no-repeat;
@@ -110,15 +109,20 @@ nav img {
   margin-inline: var(--padding-max);
 }
 .pass-card {
+  --card-color: var(--theme-color-darkblue);
   font-family: system-ui;
-  --text-small: 10px;
+  --text-small: 30px;
   --text-medium: 35px;
   --text-large: 45px;
-  font-size: 16px;
+  --text-bigger: 4px;
   align-items: center;
+  overflow: hidden;
   color: white;
-  background-color: var(--theme-color-darkblue);
-  border-radius: 35px;
+  background-color: var(--card-color);
+  border-color: var(--card-color);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 44px;
 }
 .pass-card p {
   margin: 0;
@@ -165,24 +169,108 @@ nav img {
   margin: 0;
 }
 .pass-card .idcard-number {
+  font-size: var(--text-medium);
+  text-wrap: nowrap;
   text-transform: uppercase;
   margin-block-start: 14px;
   margin-inline-start: auto;
-  margin-inline-end: 50px;
+  margin-inline-end: 40px;
 }
 .pass-card .divider {
   width: 100%;
 }
 .pass-card .route-title {
+  font-size: var(--text-medium);
   text-transform: uppercase;
   margin-block-start: 4px;
 }
 .pass-card .route {
-  font-size: var(--text-large);
+  font-size: calc(var(--text-large) + var(--text-bigger));
   text-transform: uppercase;
   text-align: center;
+  line-height: 1.2em;
+  margin-block-end: 20px;
 }
 .pass-card .idcard-container {
+  display: grid;
+  grid-template-rows: 1fr 100px;
+  grid-template-columns: 60% 40%;
+  width: calc(100% - 28px);
+  overflow: hidden;
+  color: black;
   background-color: #E0EBEF;
+  border-radius: 50px;
+}
+.pass-card .idcard-container .idcard-detailscontainer {
+  grid-area: 1 / 1;
+  font-size: var(--text-large);
+  text-transform: uppercase;
+  margin-block: 42px;
+  margin-inline-start: 28px;
+}
+.pass-card .idcard-container .idcard-detailscontainer .idcard-details {
+  line-height: 1.2em;
+}
+.pass-card .idcard-container .idcard-detailscontainer .idcard-details:last-child {
+  margin-block-end: 0;
+}
+.pass-card .idcard-container .idcard-detailscontainer .idcard-passtype {
+  font-size: calc(var(--text-large) + var(--text-bigger));
+  font-weight: bold;
+}
+.pass-card .idcard-container .idcard-detailscontainer .idcard-passpurchase-date {
+  font-size: calc(var(--text-large) + calc(var(--text-bigger) * 3));
+  font-weight: bold;
+}
+.pass-card .idcard-container .idcard-photo-container {
+  grid-area: 1 / 2;
+  border-radius: inherit;
+  background-color: white;
+}
+.pass-card .idcard-container .idcard-stripes {
+  grid-area: 2 / 1 / 2 / 3;
+}
+.pass-card .details-container {
+  font-size: var(--text-small);
+  width: calc(100% - 76px);
+  gap: 36px;
+  margin-block-start: 14px;
+}
+.pass-card .details-container div {
+  width: 50%;
+}
+.pass-card .details-container hr {
+  margin: 0;
+}
+.pass-card .details-container .details {
+  text-transform: capitalize;
+}
+.pass-card .holder-name {
+  font-size: calc(var(--text-large) - 2px);
+  font-weight: bold;
+  text-transform: capitalize;
+  text-wrap: nowrap;
+  margin-block-start: -5px;
+}
+.pass-card .holder-taxID {
+  font-size: var(--text-medium);
+  text-wrap: nowrap;
+  margin-block-start: -5px;
+}
+.pass-card .qrcode {
+  width: 255px;
+  aspect-ratio: 1;
+  background-color: white;
+  margin-block: 10px;
+}
+.pass-card .info {
+  width: 100%;
+  font-size: 26px;
+  text-wrap: nowrap;
+  line-height: 1.1em;
+  color: black;
+  padding-inline: 38px;
+  box-sizing: border-box;
+  background-color: #DCE5E7;
 }
 /*# sourceMappingURL=index.css.map */
