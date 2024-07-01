@@ -70,9 +70,6 @@ function readFormData() {
     checkValid(expiry_time, 'Ora di scadenza')
     const service = getValue('#TravelPass-form #service')
     checkValid(service, 'Servizio')
-    // @ts-ignore
-    const qrcodeDataURL = document.querySelector('#TravelPass-form #qrcode').files[0]
-    checkValid(qrcodeDataURL, 'Fototessera del titolare')
 
     if (invalidFields.length > 0) {
         let message = 'Inserire i dati mancanti: '
@@ -92,8 +89,7 @@ function readFormData() {
             rate: String(rate),
             purchase: new Date(`${purchase_date} ${purchase_time}`),
             expiry: new Date(`${expiry_date} ${expiry_time}`),
-            service: String(service),
-            qrcodeDataURL: qrcodeDataURL
+            service: String(service)
         }
     }
 }
@@ -109,7 +105,6 @@ function makeTravelPass(data: {
     purchase: Date;
     expiry: Date;
     service: string;
-    qrcodeDataURL: string;
 }):TravelPass {
     return new TravelPass(
         data.from,
@@ -122,7 +117,6 @@ function makeTravelPass(data: {
         data.purchase,
         data.expiry,
         data.service,
-        data.qrcodeDataURL
     )
 }
 

@@ -32,7 +32,7 @@ function readFormData() {
     const taxid = getValue('#IDCard-form #holder-TAXID')
     checkValid(taxid, 'Codice fiscale del titolare')
     // @ts-ignore
-    const photoDataURL = document.querySelector('#IDCard-form #photo').files[0]
+    const photoDataURL = document.querySelector('#IDCard-form #photo').dataset.dataurl
     checkValid(photoDataURL, 'Fototessera del titolare')
 
     if (invalidFields.length > 0) {
@@ -51,7 +51,7 @@ function readFormData() {
                 birthDate: new Date(date),
                 TAXID: String(taxid)
             },
-            photoDataURL: URL.createObjectURL(photoDataURL)
+            photoDataURL: photoDataURL
         }
     }
 }
@@ -86,6 +86,11 @@ function saveIDCard(card:IDCard) {
 }
 
 function addCard() {
+    if (fileReader.readyState!==fileReader.DONE) {
+        alert('Attendere il caricamento della fototessera...')
+        return
+    }
+
     const formData = readFormData()
     if (!formData) return
     const card = makeIDCard(formData)
@@ -117,11 +122,23 @@ form_inputs.forEach(form_input => {form_input.setAttribute('disabled', "true")})
 // @ts-ignore
 document.getElementById('IDCard-form').classList.add('disabled')
 
-const submit_button = document.querySelector('#IDCard-form #submit-button')
+const fileReader = new FileReader();
+const photo_input = document.querySelector('#IDCard-form #photo')
 // @ts-ignore
-submit_button.onclick = addCard
+photo_input.addEventListener('change', e => {
+    // @ts-ignore
+    const dataURL = fileReader.readAsDataURL(photo_input.files[0])
+    fileReader.addEventListener('load', _ => {
+        // @ts-ignore
+        photo_input.dataset.dataurl = fileReader.result;
+    })
+})
 
 // Prevent unborn people from adding an ID Card
 const birthDate_input = document.getElementById('holder-birthDate')
 // @ts-ignore
 birthDate_input.max = new Date().toISOString().split('T')[0]
+
+const submit_button = document.querySelector('#IDCard-form #submit-button')
+// @ts-ignore
+submit_button.onclick = addCard
