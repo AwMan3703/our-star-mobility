@@ -1,6 +1,5 @@
 import {IDCard, TravelPass} from "./classes.js"
 import {getCardPasses, getCards} from "./localStorage.js";
-import {capitalize, redirect} from './utility.js'
 
 let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
@@ -95,10 +94,15 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 
         idcard_container.appendChild(idcard_photo_container)
 
+        const idcard_stripes_container = document.createElement('div')
+        idcard_stripes_container.classList.add('idcard-stripes-container')
+        idcard_stripes_container.classList.add(`${isPassValid ? 'valid' : 'expired'}-pass`)
+
         const idcard_stripes = document.createElement('div')
         idcard_stripes.classList.add('idcard-stripes')
-        idcard_stripes.classList.add(`${isPassValid ? 'valid' : 'expired'}-pass`)
-        idcard_container.appendChild(idcard_stripes)
+        idcard_stripes_container.appendChild(idcard_stripes)
+
+        idcard_container.appendChild(idcard_stripes_container)
 
         container.appendChild(idcard_container)
         //

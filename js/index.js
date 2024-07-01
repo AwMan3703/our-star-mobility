@@ -69,10 +69,13 @@ function _new_passCard(card, pass, i) {
     idcard_photo.style.backgroundImage = `url("${card.photoDataURL}")`;
     idcard_photo_container.appendChild(idcard_photo);
     idcard_container.appendChild(idcard_photo_container);
+    const idcard_stripes_container = document.createElement('div');
+    idcard_stripes_container.classList.add('idcard-stripes-container');
+    idcard_stripes_container.classList.add(`${isPassValid ? 'valid' : 'expired'}-pass`);
     const idcard_stripes = document.createElement('div');
     idcard_stripes.classList.add('idcard-stripes');
-    idcard_stripes.classList.add(`${isPassValid ? 'valid' : 'expired'}-pass`);
-    idcard_container.appendChild(idcard_stripes);
+    idcard_stripes_container.appendChild(idcard_stripes);
+    idcard_container.appendChild(idcard_stripes_container);
     container.appendChild(idcard_container);
     //
     // Pass details

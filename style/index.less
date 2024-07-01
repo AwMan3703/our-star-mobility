@@ -176,8 +176,30 @@ nav img {
 	background-color: white;
 }
 
-.pass-card .idcard-container .idcard-stripes {
+.pass-card .idcard-container .idcard-stripes-container {
 	grid-area: 2 / 1 / 2 / 3;
+}
+.pass-card .idcard-container .idcard-stripes-container.valid-pass {
+	background-color: #79BF83;
+	background-image: linear-gradient(90deg, rgba(84,140,95,1), rgba(138,192,146,1), rgba(84,140,95,1));
+}
+.pass-card .idcard-container .idcard-stripes-container.expired-pass {
+	background-color: #FF1A1A;
+}
+.pass-card .idcard-container .idcard-stripes-container .idcard-stripes {
+	--stripe-color: rgba(255,255,255,0.75);
+
+	width: 100%;
+	height: 100%;
+	background-size: 200%;
+	background-image: repeating-linear-gradient(108deg, transparent 0%, transparent 2%, var(--stripe-color) 2.2%, var(--stripe-color) 3%, transparent 3.2%, transparent 5.2%);
+}
+.pass-card .idcard-container .idcard-stripes-container.valid-pass .idcard-stripes {
+	animation: stripes-scroll 6s linear forwards infinite;
+}
+@keyframes stripes-scroll {
+	from { background-position-x: 0%; }
+	to { background-position-x: 100%; }
 }
 
 .pass-card .details-container {
