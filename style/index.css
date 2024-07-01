@@ -157,7 +157,7 @@ nav img {
 .pass-card .validity-label-container.valid-pass::before,
 .pass-card .validity-label-container.valid-pass::after {
   background-image: url("../src/check.png");
-  background-color: #96C05B;
+  background-color: #8dba4a;
 }
 .pass-card .validity-label-container.expired-pass::before,
 .pass-card .validity-label-container.expired-pass::after {
@@ -229,7 +229,7 @@ nav img {
 }
 .pass-card .idcard-container .idcard-stripes-container.valid-pass {
   background-color: #79BF83;
-  background-image: linear-gradient(90deg, #548c5f, #8ac092, #548c5f);
+  background-image: linear-gradient(90deg, #498856FF, #8AC092FF, #498856FF);
 }
 .pass-card .idcard-container .idcard-stripes-container.expired-pass {
   background-color: #FF1A1A;
@@ -291,7 +291,7 @@ nav img {
 }
 .pass-card .info {
   width: 100%;
-  font-size: 26px;
+  font-size: 24px;
   text-wrap: nowrap;
   line-height: 1.1em;
   color: black;
