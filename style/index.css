@@ -229,7 +229,7 @@ nav img {
 }
 .pass-card .idcard-container .idcard-stripes-container.valid-pass {
   background-color: #79BF83;
-  background-image: linear-gradient(90deg, #498856FF, #8AC092FF, #498856FF);
+  background-image: linear-gradient(90deg, #41884f, #82c58b, #41884f);
 }
 .pass-card .idcard-container .idcard-stripes-container.expired-pass {
   background-color: #FF1A1A;
