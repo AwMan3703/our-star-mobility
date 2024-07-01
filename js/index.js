@@ -130,10 +130,11 @@ function _new_passCard(card, pass, i) {
     holder_taxID.classList.add('holder-taxID');
     holder_taxID.innerText = `${card.holder.TAXID}`;
     container.appendChild(holder_taxID);
-    const qrcode = document.createElement('div');
-    qrcode.classList.add('qrcode');
-    qrcode.style.backgroundImage = `url("${pass.qrcodeDataURL}"`;
-    container.appendChild(qrcode);
+    const qrcode_block = document.createElement('div');
+    qrcode_block.id = `pass-card-qrcode-${crypto.randomUUID()}`;
+    qrcode_block.classList.add('qrcode');
+    qrcode_block.style.backgroundImage = `url("${pass.qrcodeDataURL}"`;
+    container.appendChild(qrcode_block);
     const info = document.createElement('p');
     info.classList.add('info');
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186';

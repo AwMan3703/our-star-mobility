@@ -174,10 +174,11 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
     holder_taxID.innerText = `${card.holder.TAXID}`
     container.appendChild(holder_taxID)
 
-    const qrcode = document.createElement('div')
-    qrcode.classList.add('qrcode')
-    qrcode.style.backgroundImage = `url("${pass.qrcodeDataURL}"`
-    container.appendChild(qrcode)
+    const qrcode_block = document.createElement('div')
+    qrcode_block.id = `pass-card-qrcode-${crypto.randomUUID()}`
+    qrcode_block.classList.add('qrcode')
+    qrcode_block.style.backgroundImage = `url("${pass.qrcodeDataURL}"`
+    container.appendChild(qrcode_block)
 
     const info = document.createElement('p')
     info.classList.add('info')
