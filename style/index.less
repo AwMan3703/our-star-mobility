@@ -32,23 +32,15 @@ nav img {
 	height: 60%;
 }
 
-#buttons {
-	&:extend(.hstack);
-	width: 100%;
-	justify-content: space-around;
-}
-
-#buttons button {
-	&:extend(.shadow);
-}
 
 #pass-cards-carousel {
 	margin-block: var(--padding-medium);
 	margin-inline: var(--padding-max);
 }
 
+
 .pass-card {
-	--card-color: var(--theme-color-darkblue);
+	--card-color: var(--theme-color-yellow);
 
 	font-family: system-ui;
 	--text-small: 25px;
@@ -256,4 +248,46 @@ nav img {
 	padding-inline: 38px;
 	box-sizing: border-box;
 	background-color: #DCE5E7;
+}
+
+
+#pass-cards-dots {
+	width: fit-content;
+	margin-block-start: auto;
+	margin-block-end: 100px;
+	margin-inline: auto;
+}
+
+.pass-card-dot {
+	width: 35px;
+	aspect-ratio: 1;
+	border-radius: 100%;
+	background-color: var(--theme-color-darkblue);
+}
+
+
+#buttons {
+	&:extend(.hstack);
+	width: 100%;
+	justify-content: space-around;
+	margin-block-end: 100px;
+}
+
+#buttons button {
+	&:extend(.shadow);
+	width: 150px;
+	aspect-ratio: 1;
+	border-radius: 100%;
+	background-size: 60%;
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+#buttons #archive-button {
+	background-image: url("../src/history.png");
+}
+#buttons #IDCard-selector-button {
+	background-image: url("../src/IDCard.png");
+}
+#buttons #IDCard-add-button {
+	background-image: url("../src/plus.png");
 }

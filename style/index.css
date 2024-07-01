@@ -3,6 +3,7 @@
   --theme-color-darkblue: #102D69;
   --theme-color-lightblue: #00B0F0;
   --theme-color-yellow: #FFD200;
+  --theme-color-pink: #FBA5D6;
   --padding-micro: 2px;
   --padding-min: 5px;
   --padding-medium: 10px;
@@ -83,8 +84,8 @@ body {
 }
 .shadow,
 nav,
-#buttons button,
-.pass-card {
+.pass-card,
+#buttons button {
   box-shadow: 0 7px 15px 0px rgba(0, 0, 0, 0.5);
 }
 nav {
@@ -100,16 +101,12 @@ nav {
 nav img {
   height: 60%;
 }
-#buttons {
-  width: 100%;
-  justify-content: space-around;
-}
 #pass-cards-carousel {
   margin-block: var(--padding-medium);
   margin-inline: var(--padding-max);
 }
 .pass-card {
-  --card-color: var(--theme-color-darkblue);
+  --card-color: var(--theme-color-yellow);
   font-family: system-ui;
   --text-small: 25px;
   --text-medium: 30px;
@@ -301,5 +298,39 @@ nav img {
   padding-inline: 38px;
   box-sizing: border-box;
   background-color: #DCE5E7;
+}
+#pass-cards-dots {
+  width: fit-content;
+  margin-block-start: auto;
+  margin-block-end: 100px;
+  margin-inline: auto;
+}
+.pass-card-dot {
+  width: 35px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-color: var(--theme-color-darkblue);
+}
+#buttons {
+  width: 100%;
+  justify-content: space-around;
+  margin-block-end: 100px;
+}
+#buttons button {
+  width: 150px;
+  aspect-ratio: 1;
+  border-radius: 100%;
+  background-size: 60%;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+#buttons #archive-button {
+  background-image: url("../src/history.png");
+}
+#buttons #IDCard-selector-button {
+  background-image: url("../src/IDCard.png");
+}
+#buttons #IDCard-add-button {
+  background-image: url("../src/plus.png");
 }
 /*# sourceMappingURL=index.css.map */

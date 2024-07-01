@@ -4,7 +4,7 @@ import { capitalize, redirect } from "./utility.js";
 // CONSTANTS
 const IDCARDS = getCards();
 const card_selector_container = document.getElementById('IDCard-selector');
-const form_inputs = document.querySelectorAll('#TravelPass-form input, #TravelPass-form button');
+const form_inputs = document.querySelectorAll('#TravelPass-form input, #TravelPass-form button, #TravelPass-form select');
 const cardSelector_inputs = document.querySelectorAll('#IDCard-selector input, #IDCard-selector button');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
 // FUNCTIONS
@@ -59,6 +59,8 @@ function readFormData() {
     checkValid(expiry_time, 'Ora di scadenza');
     const service = getValue('#TravelPass-form #service');
     checkValid(service, 'Servizio');
+    const card_color = getValue('#TravelPass-form #card-color-selector');
+    checkValid(card_color, 'Colore');
     if (invalidFields.length > 0) {
         let message = 'Inserire i dati mancanti: ';
         for (const field of invalidFields) {
@@ -78,12 +80,13 @@ function readFormData() {
             rate: String(rate),
             purchase: new Date(`${purchase_date} ${purchase_time}`),
             expiry: new Date(`${expiry_date} ${expiry_time}`),
-            service: String(service)
+            service: String(service),
+            cardcolor: String(card_color)
         };
     }
 }
 function makeTravelPass(data) {
-    return new TravelPass(data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.expiry, data.service);
+    return new TravelPass(data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.expiry, data.service, data.cardcolor);
 }
 function saveTravelPass(card, pass) {
     const savedPasses = getCardPasses(card);

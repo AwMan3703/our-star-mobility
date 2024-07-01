@@ -17,6 +17,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 
     const container = document.createElement('div')
     container.classList.add('pass-card')
+    container.style.setProperty('--card-color', `var(--theme-color-${pass.cardcolor})`)
 
     const logo = document.createElement('img')
     logo.classList.add('logo')
@@ -196,14 +197,24 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
     return container
 }
 
+function _new_passCard_dot(i: number) {
+    const dot = document.createElement('div')
+    dot.classList.add('pass-card-dot')
+    dot.dataset.index = String(i)
+    return dot
+}
+
 function refresh_passes() {
     const carousel = document.getElementById('pass-cards-carousel')
+    const dots = document.getElementById('pass-cards-dots')
     // @ts-ignore
     carousel.innerHTML = ''
     let counter:number = 0
     CURRENT_IDCARD_PASSES.forEach(pass => {
         // @ts-ignore
         carousel.appendChild(_new_passCard(getCurrentCard(), pass, counter + 1))
+        // @ts-ignore
+        dots.appendChild(_new_passCard_dot(counter + 1))
         counter += 1
     })
 }
