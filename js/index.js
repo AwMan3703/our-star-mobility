@@ -135,6 +135,7 @@ function _new_passCard(card, pass, i) {
     qrcode_block.classList.add('qrcode');
     qrcode_block.style.backgroundImage = `url("${pass.qrcodeDataURL}"`;
     container.appendChild(qrcode_block);
+    qrcode_block.qrcode("google.com");
     const info = document.createElement('p');
     info.classList.add('info');
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186';
