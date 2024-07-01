@@ -221,6 +221,9 @@ nav img {
 }
 .pass-card .idcard-container .idcard-photo-container {
   grid-area: 1 / 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: inherit;
   background-color: white;
 }
