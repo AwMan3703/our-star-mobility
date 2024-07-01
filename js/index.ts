@@ -179,7 +179,8 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
     qrcode_block.classList.add('qrcode')
     qrcode_block.style.backgroundImage = `url("${pass.qrcodeDataURL}"`
     container.appendChild(qrcode_block)
-    qrcode_block.qrcode("google.com")
+    const qrURL = 'google.com'
+    const qrcode = new QRCode(qrcode_block, qrURL);
 
     const info = document.createElement('p')
     info.classList.add('info')
