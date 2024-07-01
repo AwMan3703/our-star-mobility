@@ -89,7 +89,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 
         const idcard_photo = document.createElement('img')
         idcard_photo.classList.add('idcard-photo')
-        idcard_photo.style.backgroundImage = `url("${card.photoDataURL}")`
+        idcard_photo.src = `${card.photoDataURL}`
         idcard_photo_container.appendChild(idcard_photo)
 
         idcard_container.appendChild(idcard_photo_container)
