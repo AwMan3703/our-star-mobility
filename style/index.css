@@ -195,7 +195,7 @@ nav img {
 }
 .pass-card .idcard-container {
   display: grid;
-  grid-template-rows: 1fr 100px;
+  grid-template-rows: 1fr 80px;
   grid-template-columns: 60% 40%;
   width: calc(100% - 28px);
   overflow: hidden;
@@ -284,11 +284,10 @@ nav img {
   margin-block-start: -5px;
 }
 .pass-card .qrcode {
-  width: 255px;
   aspect-ratio: 1;
   background-color: white;
   margin-block: 10px;
-  padding: 20px;
+  padding: 15px;
 }
 .pass-card .info {
   width: 100%;
