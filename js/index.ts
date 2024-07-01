@@ -180,6 +180,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
     qrcode_block.style.backgroundImage = `url("${pass.qrcodeDataURL}"`
     container.appendChild(qrcode_block)
     const qrURL = 'google.com'
+    // @ts-ignore because it's imported
     const qrcode = new QRCode(qrcode_block, qrURL);
 
     const info = document.createElement('p')

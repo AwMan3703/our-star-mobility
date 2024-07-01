@@ -90,7 +90,7 @@ nav,
 nav {
   box-sizing: border-box;
   max-width: 100%;
-  height: 6vh;
+  height: 7vh;
   padding-block-start: 25px;
   padding-inline: calc(2 * var(--padding-max));
   align-items: start;
@@ -111,9 +111,9 @@ nav img {
 .pass-card {
   --card-color: var(--theme-color-darkblue);
   font-family: system-ui;
-  --text-small: 30px;
-  --text-medium: 35px;
-  --text-large: 45px;
+  --text-small: 25px;
+  --text-medium: 30px;
+  --text-large: 40px;
   --text-bigger: 4px;
   --hr-width: 2px;
   align-items: center;
