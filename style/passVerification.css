@@ -1,0 +1,120 @@
+@media screen and (max-width: 991px) {
+  body {
+    padding-top: 110px;
+    /*Serve  se viene utilizzata la navbar top*/
+    /*padding-bottom: 140px; /*Serve se viene utilizzata la navbar footer*/
+    font-size: 13px;
+  }
+}
+@media screen and (min-width: 992px) {
+  body {
+    padding-top: 130px;
+    /*Serve  se viene utilizzata la navbar top*/
+    /*padding-bottom: 90px; /*Serve se viene utilizzata la navbar footer*/
+    font-size: 13px;
+  }
+}
+.form-control,
+.btn,
+.well {
+  font-size: 13px;
+}
+.m_btn_custom {
+  background-color: #7C7C7C;
+  color: #FFFFFF;
+}
+.m_btn_custom:hover {
+  background-color: #a1a1a1;
+  color: #FFFFFF;
+}
+.m_nav-custom {
+  background-color: #7C7C7C;
+}
+.m_nav-custom .nav > li > a,
+.m_nav-custom .nav > li > div > a {
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.m_nav-custom .nav > li:focus,
+.m_nav-custom .nav > li:hover {
+  background-color: #FFFFFF;
+  color: #7C7C7C;
+}
+.m_nav-custom .nav > li > a:focus,
+.m_nav-custom .nav > li > a:hover,
+.m_nav-custom .nav > li > div > a:focus,
+.m_nav-custom .nav > li > div > a:hover {
+  text-decoration: none;
+  font-weight: bold;
+  color: #7C7C7C;
+}
+.m_table_header {
+  background-color: #7C7C7C;
+  color: White;
+  font-weight: bold;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.sfondo {
+  background: url(AreeSfondo.png) no-repeat;
+  height: 750px;
+}
+/* CSS per gestione fototessera */
+.imageBox {
+  position: relative;
+  height: 260px;
+  width: 236px;
+  border: 1px solid #aaa;
+  background: #fff;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  cursor: move;
+}
+.imageBox .thumbBox {
+  position: absolute;
+  /*top: 50%;
+    left: 50%;*/
+  height: 260px;
+  width: 236px;
+  /*margin-top: -100px;
+    margin-left: -100px;
+    border: 1px solid rgb(102, 102, 102);
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5);
+    background: none repeat scroll 0% 0% transparent;*/
+}
+.imageBox .spinner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  line-height: 400px;
+  background: #aaa;
+}
+/* Sticky footer styles
+-------------------------------------------------- */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 150px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 100px;
+  background-color: #7C7C7C;
+}
+.default-foto {
+  background-image: url('../Images/user-default.png');
+  height: 260px;
+  width: 236px;
+  border: 1px solid grey;
+}
+/*# sourceMappingURL=passVerification.css.map */
