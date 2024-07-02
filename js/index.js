@@ -7,7 +7,7 @@ function getCurrentCard() {
     return IDCARDS[CURRENT_IDCARD_INDEX];
 }
 function _new_passCard(card, pass, i) {
-    const isPassValid = pass.expiry >= new Date(Date()) || true;
+    const isPassValid = pass.expiry >= new Date(Date());
     const container = document.createElement('div');
     container.classList.add('pass-card');
     container.style.setProperty('--card-color', `var(--theme-color-${pass.cardcolor})`);

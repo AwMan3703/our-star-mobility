@@ -13,7 +13,7 @@ function getCurrentCard() {
 }
 
 function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
-    const isPassValid = pass.expiry >= new Date(Date()) || true
+    const isPassValid = pass.expiry >= new Date(Date())
 
     const container = document.createElement('div')
     container.classList.add('pass-card')
