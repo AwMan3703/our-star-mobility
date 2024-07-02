@@ -53,6 +53,10 @@ function readFormData() {
     checkValid(purchase_date, 'Data di acquisto');
     const purchase_time = getValue('#TravelPass-form #purchase-time');
     checkValid(purchase_time, 'Ora di acquisto');
+    const activation_date = getValue('#TravelPass-form #activation-date');
+    checkValid(activation_date, 'Data di attivazione');
+    const activation_time = getValue('#TravelPass-form #activation-time');
+    checkValid(activation_time, 'Ora di attivazione');
     const expiry_date = getValue('#TravelPass-form #expiry-date');
     checkValid(expiry_date, 'Data di scadenza');
     const expiry_time = getValue('#TravelPass-form #expiry-time');
@@ -79,6 +83,7 @@ function readFormData() {
             price: parseFloat(String(price).replace(',', '.')),
             rate: String(rate),
             purchase: new Date(`${purchase_date} ${purchase_time}`),
+            activation: new Date(`${activation_date} ${activation_time}`),
             expiry: new Date(`${expiry_date} ${expiry_time}`),
             service: String(service),
             cardcolor: String(card_color)
@@ -86,7 +91,7 @@ function readFormData() {
     }
 }
 function makeTravelPass(data) {
-    return new TravelPass(data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.expiry, data.service, data.cardcolor);
+    return new TravelPass(data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.activation, data.expiry, data.service, data.cardcolor);
 }
 function saveTravelPass(card, pass) {
     const savedPasses = getCardPasses(card);

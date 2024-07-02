@@ -37,7 +37,7 @@ export class IDCard {
     }
 }
 export class TravelPass {
-    constructor(from, to, line, type, period, price, rate, purchase, expiry, service, cardcolor) {
+    constructor(from, to, line, type, period, price, rate, purchase, activation, expiry, service, cardcolor) {
         this.from = from;
         this.to = to;
         this.line = line;
@@ -46,12 +46,13 @@ export class TravelPass {
         this.price = price;
         this.rate = rate;
         this.purchase = purchase;
+        this.activation = activation;
         this.expiry = expiry;
         this.service = service;
         this.cardcolor = cardcolor;
     }
     static FromJSON(json) {
-        return new TravelPass(json.from, json.to, json.line, json.type, json.period, json.price, json.rate, new Date(json.purchase), new Date(json.expiry), json.service, json.cardcolor);
+        return new TravelPass(json.from, json.to, json.line, json.type, json.period, json.price, json.rate, new Date(json.purchase), new Date(json.activation), new Date(json.expiry), json.service, json.cardcolor);
     }
     toJSON() {
         return {
@@ -63,6 +64,7 @@ export class TravelPass {
             price: this.price,
             rate: this.rate,
             purchase: this.purchase.toJSON(),
+            activation: this.activation.toJSON(),
             expiry: this.expiry.toJSON(),
             service: this.service,
             cardcolor: this.cardcolor

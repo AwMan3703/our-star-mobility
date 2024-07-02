@@ -67,7 +67,7 @@ export class IDCard {
 }
 
 export class TravelPass {
-    constructor(from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, expiry: Date, service: string, cardcolor: string) {
+    constructor(from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, activation: Date, expiry: Date, service: string, cardcolor: string) {
         this.from = from
         this.to = to
         this.line = line
@@ -76,6 +76,7 @@ export class TravelPass {
         this.price = price
         this.rate = rate
         this.purchase = purchase
+        this.activation = activation
         this.expiry = expiry
         this.service = service
         this.cardcolor = cardcolor
@@ -97,6 +98,8 @@ export class TravelPass {
     rate: string
     // purchase date & time
     purchase: Date
+    // activation date and time (when the pass becomes valid)
+    activation: Date
     // expiry date & time
     expiry: Date
     // service (e.g. extraurbano Lodi)
@@ -109,10 +112,11 @@ export class TravelPass {
         to: string
         line: string
         type: string
-        period: string;
+        period: string
         price: number
         rate: string
         purchase: string
+        activation: string
         expiry: string
         service: string
         cardcolor: string
@@ -126,6 +130,7 @@ export class TravelPass {
             json.price,
             json.rate,
             new Date(json.purchase),
+            new Date(json.activation),
             new Date(json.expiry),
             json.service,
             json.cardcolor
@@ -141,6 +146,7 @@ export class TravelPass {
             price: this.price,
             rate: this.rate,
             purchase: this.purchase.toJSON(),
+            activation: this.activation.toJSON(),
             expiry: this.expiry.toJSON(),
             service: this.service,
             cardcolor: this.cardcolor
