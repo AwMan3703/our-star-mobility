@@ -33,9 +33,8 @@ export function passDataToURLParameters(data: {
     const c = (s: string, k: string, v:string) => {
         return `${s}&${k}=${v}`
     }
-    let raw = ''
 
-    raw = c(raw, 'cn', data.card_number)
+    let raw = 'cn=' + data.card_number
     raw = c(raw, 'hn', data.holder.name)
     raw = c(raw, 'hln', data.holder.last_name)
     raw = c(raw, 'pty', data.pass_type)
