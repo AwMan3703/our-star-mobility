@@ -17,6 +17,8 @@ export function setCards(cards) {
 }
 const localStorageCardPassesKey = (card) => `${card.number}-TravelPasses`;
 export function getCardPasses(card) {
+    if (!card)
+        return null;
     const passes = [];
     const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardPassesKey(card)) || "[]");
     JSONPasses.forEach((pass) => {
