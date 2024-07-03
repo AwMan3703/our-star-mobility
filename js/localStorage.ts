@@ -24,6 +24,7 @@ export function setCards(cards:IDCard[]) {
 
 const localStorageCardPassesKey = (card:IDCard) => `${card.number}-TravelPasses`
 export function getCardPasses(card:IDCard) {
+    if (typeof card === typeof undefined || !card) return null
     const passes:TravelPass[] = []
     const JSONPasses = JSON.parse(localStorage.getItem(localStorageCardPassesKey(card)) || "[]")
     JSONPasses.forEach((pass:{
