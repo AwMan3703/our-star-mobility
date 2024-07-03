@@ -1,6 +1,6 @@
 import { getCardPasses, getCards } from "./localStorage.js";
 import { shortenURL } from "./shortenURL.js";
-import { passDataToURLParameters, prettyDate } from "./utility.js";
+import { passDataToURLParameters, prettyDate, redirect } from "./utility.js";
 let CURRENT_IDCARD_INDEX = 0;
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
@@ -200,7 +200,7 @@ function selectIDCard(index) {
 const IDCard_count = getCards().length;
 if (IDCard_count < 1) {
     console.warn('No IDCard detected, redirecting to addIDCard...');
-    //redirect('addIDCard.html')
+    redirect('addIDCard.html');
 }
 else {
     console.info(`${IDCard_count} IDCard(s) found`);
