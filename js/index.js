@@ -153,9 +153,8 @@ function _new_passCard(card, pass, i) {
         pass_purchase: pass.purchase,
         photo_dataURL: card.photoDataURL
     })}`;
-    console.log(qrURL);
     shortenURL(qrURL, response => {
-        console.log('Compressed URL to', response.short_url);
+        console.log('Compressed pass #', i, 'URL to', response.short_url);
         // @ts-ignore
         const qrcode = new QRCode(qrcode_block, {
             text: response.short_url,
