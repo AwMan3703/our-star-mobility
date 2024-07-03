@@ -49,3 +49,6 @@ setElementText('travelPass-purchase', passData.pass_purchase)
 // Because the image dataURL is like 20000 characters long
 // and that's not gonna fly in a qrcode
 // MAYBE use pastebin?
+// NO actually, put the WHOLE ASS DATAURL in the qrcode link,
+// then shorten it so the qrcode isn't fucking enormous,
+// then retrieve it from the URL parameter
