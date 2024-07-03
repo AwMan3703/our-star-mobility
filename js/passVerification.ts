@@ -44,11 +44,5 @@ setElementText('travelPass-variant', passData.pass_variant)
 setElementText('travelPass-price', passData.pass_price)
 setElementText('travelPass-purchase', passData.pass_purchase)
 
-// set IDCard photo src somehow
-// TODO: figure this out
-// Because the image dataURL is like 20000 characters long
-// and that's not gonna fly in a qrcode
-// MAYBE use pastebin?
-// NO actually, put the WHOLE ASS DATAURL in the qrcode link,
-// then shorten it so the qrcode isn't fucking enormous,
-// then retrieve it from the URL parameter
+// @ts-ignore
+document.getElementById('IDCard-photo').src = passData.photo_dataURL
