@@ -1,4 +1,5 @@
 import { getCardPasses, getCards } from "./localStorage.js";
+import { passDataToURLParameters, prettyDate } from "./utility";
 let CURRENT_IDCARD_INDEX = 0;
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
@@ -59,7 +60,7 @@ function _new_passCard(card, pass, i) {
     idcard_pass_expiry_date.classList.add('idcard-details');
     idcard_pass_expiry_date.classList.add('idcard-passpurchase');
     idcard_pass_expiry_date.classList.add('idcard-passpurchase-date');
-    idcard_pass_expiry_date.innerText = `${pass.expiry.getDate()}/${pass.expiry.getMonth() + 1}/${pass.expiry.getFullYear()} ${pass.expiry.getHours()}:${pass.expiry.getMinutes()}:${pass.expiry.getSeconds()}`;
+    idcard_pass_expiry_date.innerText = `${prettyDate(pass.expiry)}`;
     idcard_details_container.appendChild(idcard_pass_expiry_date);
     idcard_container.appendChild(idcard_details_container);
     //
@@ -135,7 +136,21 @@ function _new_passCard(card, pass, i) {
     qrcode_block.id = `pass-card-qrcode-${crypto.randomUUID()}`;
     qrcode_block.classList.add('qrcode');
     container.appendChild(qrcode_block);
-    const qrURL = 'google.com';
+    const qrURL = `https://${passDataToURLParameters({
+        card_number: card.number,
+        holder: {
+            name: card.holder.firstName,
+            last_name: card.holder.lastName
+        },
+        pass_type: pass.type,
+        pass_activation: pass.activation,
+        pass_expiry: pass.expiry,
+        pass_from: pass.from,
+        pass_to: pass.to,
+        pass_variant: 'VARIANTE BASE',
+        pass_price: pass.price,
+        pass_purchase: pass.purchase
+    })}`;
     // @ts-ignore
     const qrcode = new QRCode(qrcode_block, {
         text: qrURL,
