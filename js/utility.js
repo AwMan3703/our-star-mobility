@@ -26,6 +26,7 @@ export function passDataToURLParameters(data) {
     raw = c(raw, 'pv', data.pass_variant);
     raw = c(raw, 'ppr', String(data.pass_price));
     raw = c(raw, 'pp', prettyDate(data.pass_purchase));
+    //raw = c(raw, 'pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
     return encodeURI(raw);
 }
 export function passDataFromURL(search) {
@@ -43,5 +44,6 @@ export function passDataFromURL(search) {
         pass_variant: URLParameters.get('pv') || 'N/A',
         pass_price: URLParameters.get('ppr') || 'N/A',
         pass_purchase: URLParameters.get('pp') || 'N/A',
+        photo_dataURL: URLParameters.get('pic') || 'N/A',
     };
 }

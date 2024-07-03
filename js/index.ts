@@ -1,6 +1,6 @@
 import {IDCard, TravelPass} from "./classes.js"
 import {getCardPasses, getCards} from "./localStorage.js";
-import {passDataToURLParameters, prettyDate} from "./utility.js";
+import {shortenURL} from "./shortenURL.js";
 
 let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
@@ -180,7 +180,8 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
     qrcode_block.id = `pass-card-qrcode-${crypto.randomUUID()}`
     qrcode_block.classList.add('qrcode')
     container.appendChild(qrcode_block)
-    const qrURL = `https://${passDataToURLParameters({
+
+    const qrURL = `https://awman3703.github.io/our-star-mobility/passVerification.html?${passDataToURLParameters({
         card_number: card.number,
         holder: {
             name: card.holder.firstName,
@@ -193,16 +194,21 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         pass_to: pass.to,
         pass_variant: 'VARIANTE BASE',
         pass_price: pass.price,
-        pass_purchase: pass.purchase
+        pass_purchase: pass.purchase,
+        photo_dataURL: card.photoDataURL
     })}`
-    // @ts-ignore
-    const qrcode = new QRCode(qrcode_block, {
-        text: qrURL,
-        width: 190,
-        height: 190,
-        colorDark : '#000',
-        colorLight : '#fff'
-    });
+    console.log(qrURL)
+    shortenURL(qrURL, response => {
+        console.log('Compressed URL to', response.short_url)
+        // @ts-ignore
+        const qrcode = new QRCode(qrcode_block, {
+            text: response.short_url,
+            width: 190,
+            height: 190,
+            colorDark : '#000',
+            colorLight : '#fff'
+        });
+    })
 
     const info = document.createElement('p')
     info.classList.add('info')
