@@ -1,5 +1,5 @@
 import { getCardPasses, getCards } from "./localStorage.js";
-import { passDataToURLParameters, prettyDate } from "./utility";
+import { passDataToURLParameters, prettyDate } from "./utility.js";
 let CURRENT_IDCARD_INDEX = 0;
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];

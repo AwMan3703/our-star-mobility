@@ -33,18 +33,18 @@ export function passDataToURLParameters(data: {
     const c = (s: string, k: string, v:string) => {
         return `${s}&${k}=${v}`
     }
-    const raw = ''
+    let raw = ''
 
-    c(raw, 'cn', data.card_number)
-    c(raw, 'hn', data.holder.name)
-    c(raw, 'hln', data.holder.last_name)
-    c(raw, 'pty', data.pass_type)
-    c(raw, 'pvd', `${prettyDate(data.pass_activation)} - ${prettyDate(data.pass_expiry)}`)
-    c(raw, 'pf', data.pass_from)
-    c(raw, 'pt', data.pass_to)
-    c(raw, 'pv', data.pass_variant)
-    c(raw, 'ppr', String(data.pass_price))
-    c(raw, 'pp', prettyDate(data.pass_purchase))
+    raw = c(raw, 'cn', data.card_number)
+    raw = c(raw, 'hn', data.holder.name)
+    raw = c(raw, 'hln', data.holder.last_name)
+    raw = c(raw, 'pty', data.pass_type)
+    raw = c(raw, 'pvd', `${prettyDate(data.pass_activation)} - ${prettyDate(data.pass_expiry)}`)
+    raw = c(raw, 'pf', data.pass_from)
+    raw = c(raw, 'pt', data.pass_to)
+    raw = c(raw, 'pv', data.pass_variant)
+    raw = c(raw, 'ppr', String(data.pass_price))
+    raw = c(raw, 'pp', prettyDate(data.pass_purchase))
 
     return encodeURI(raw)
 }
