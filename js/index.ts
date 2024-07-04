@@ -298,7 +298,7 @@ cardSelector_button.addEventListener('click', _ => {cardSelector_drawer.classLis
 cardSelector_level.addEventListener('click', _ => {cardSelector_drawer.classList.remove('open')})
 
 // @ts-ignore
-document.getElementById('IDCard-add-button').addEventListener('click', _ => {redirect('addTravelPass.html')})
+document.getElementById('TravelPass-add-button').addEventListener('click', _ => {redirect('addTravelPass.html')})
 
 
 if (IDCARDS.length < 1) {
