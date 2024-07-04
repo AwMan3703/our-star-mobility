@@ -203,8 +203,8 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         // @ts-ignore
         const qrcode = new QRCode(qrcode_block, {
             text: response.short_url,
-            width: 190,
-            height: 190,
+            width: 215,
+            height: 215,
             colorDark : '#000',
             colorLight : '#fff'
         });
