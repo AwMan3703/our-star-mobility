@@ -111,8 +111,9 @@ body {
   height: 100px;
   background-color: #7C7C7C;
 }
-.default-foto {
-  background-image: url('../Images/user-default.png');
+.default-photo {
+  background-image: url('../src/user-default.jpg');
+  background-size: contain;
   height: 260px;
   width: 236px;
   border: 1px solid grey;
