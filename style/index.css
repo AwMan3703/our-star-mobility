@@ -100,7 +100,7 @@ nav {
   background-color: var(--theme-color-uibg);
 }
 nav img {
-  height: 70px;
+  height: 60px;
 }
 #pass-cards-carousel {
   margin-block: var(--padding-medium);
