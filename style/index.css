@@ -92,7 +92,7 @@ nav,
 nav {
   box-sizing: border-box;
   max-width: 100%;
-  height: 146px;
+  height: 144px;
   padding-block-start: 25px;
   padding-inline: calc(2 * var(--padding-max));
   align-items: start;
@@ -100,7 +100,7 @@ nav {
   background-color: var(--theme-color-uibg);
 }
 nav img {
-  height: 72px;
+  height: 70px;
 }
 #pass-cards-carousel {
   margin-block: var(--padding-medium);
