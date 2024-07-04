@@ -1,5 +1,6 @@
 :root {
   --color-layer: rgba(0, 0, 0, 0.075);
+  --theme-color-uibg: #0C3980;
   --theme-color-darkblue: #102D69;
   --theme-color-lightblue: #00B0F0;
   --theme-color-yellow: #FFD200;
@@ -53,11 +54,11 @@ button,
 #invalid-form-warning {
   border-style: solid;
   border-width: 2px;
-  border-color: var(--theme-color-darkblue);
+  border-color: var(--theme-color-uibg);
 }
 button {
   cursor: pointer;
-  background-color: var(--theme-color-darkblue);
+  background-color: var(--theme-color-uibg);
   color: white;
 }
 button:disabled {
