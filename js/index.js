@@ -176,11 +176,41 @@ function _new_passCard_dot(i) {
     dot.dataset.index = String(i);
     return dot;
 }
+function _new_passCardSelector_item(card, i) {
+    const cardPasses = getCardPasses(card);
+    const container = document.createElement('div');
+    container.classList.add('item');
+    container.dataset.cardIndex = String(i);
+    container.addEventListener('click', e => {
+        console.log('Switching to IDCard #', i);
+        selectIDCard(i);
+    });
+    const index = document.createElement('div');
+    index.classList.add('index');
+    index.innerText = `#${i + 1}`;
+    container.appendChild(index);
+    const cardNumber = document.createElement('span');
+    cardNumber.classList.add('card-number');
+    cardNumber.innerText = `${card.number}`;
+    container.appendChild(cardNumber);
+    const holderName = document.createElement('p');
+    holderName.classList.add('holder-name');
+    holderName.innerText = `${card.holder.firstName} ${card.holder.lastName}`;
+    container.appendChild(holderName);
+    const description = document.createElement('span');
+    description.classList.add('description');
+    const sin_plu = cardPasses.length !== 1 ? 'i' : 'o';
+    description.innerText = `(${cardPasses.length}) titol${sin_plu} di viaggio associat${sin_plu}`;
+    container.appendChild(description);
+    return container;
+}
 function refresh_passes() {
     const carousel = document.getElementById('pass-cards-carousel');
     const dots = document.getElementById('pass-cards-dots');
     // @ts-ignore
     carousel.innerHTML = '';
+    // @ts-ignore
+    dots.innerHTML = '';
     let counter = 0;
     CURRENT_IDCARD_PASSES.forEach(pass => {
         // @ts-ignore
@@ -198,21 +228,27 @@ function selectIDCard(index) {
 }
 // SCRIPT
 const cardSelector = document.getElementById('IDCard-selector');
+const cardSelector_drawer = document.getElementById('IDCard-selector-drawer');
 const cardSelector_level = document.getElementById('IDCard-selector-level');
 const cardSelector_button = document.getElementById('IDCard-selector-button');
 // @ts-ignore
-cardSelector_button.addEventListener('click', _ => { cardSelector.classList.add('open'); });
+cardSelector_button.addEventListener('click', _ => { cardSelector_drawer.classList.add('open'); });
 // @ts-ignore
-cardSelector_level.addEventListener('click', _ => { cardSelector.classList.remove('open'); });
+cardSelector_level.addEventListener('click', _ => { cardSelector_drawer.classList.remove('open'); });
 // @ts-ignore
 document.getElementById('IDCard-add-button').addEventListener('click', _ => { redirect('addTravelPass.html'); });
-const IDCard_count = getCards().length;
-if (IDCard_count < 1) {
+if (IDCARDS.length < 1) {
     console.warn('No IDCard detected, redirecting to addIDCard...');
     redirect('addIDCard.html');
 }
 else {
-    console.info(`${IDCard_count} IDCard(s) found`);
+    console.info(`${IDCARDS.length} IDCard(s) found`);
 }
+let counter = 0;
+IDCARDS.forEach(card => {
+    // @ts-ignore
+    cardSelector.appendChild(_new_passCardSelector_item(card, counter));
+    counter += 1;
+});
 // Do this so everything gets properly loaded
 selectIDCard(0);
