@@ -16,6 +16,7 @@ export function shortenURL(url: string, callback: (response: {short_url: string}
                 callback(JSON.parse(xhr.responseText))
             } else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
+                callback({short_url: url.split('?')[0]}) // So the callback will just go with the base url
             }
         }
     };

@@ -14,6 +14,7 @@ export function shortenURL(url, callback) {
             }
             else {
                 console.error(`HTTP error! Status: ${xhr.status}`);
+                callback({ short_url: url.split('?')[0] }); // So the callback will just go with the base url
             }
         }
     };
