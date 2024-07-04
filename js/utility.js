@@ -2,6 +2,14 @@
 export const redirect = (location) => {
     window.location.href = location;
 };
+export function toggleClass(element, className) {
+    if (element.classList.contains(className)) {
+        element.classList.remove(className);
+    }
+    else {
+        element.classList.add(className);
+    }
+}
 export function capitalize(text) {
     return text[0].toUpperCase() + text.substring(1, text.length);
 }
