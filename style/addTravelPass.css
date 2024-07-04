@@ -1,3 +1,7 @@
+@font-face {
+  font-family: "Arial Medium";
+  src: url(../src/_fonts/ArialMdm.ttf) format("truetype");
+}
 :root {
   --color-layer: rgba(0, 0, 0, 0.075);
   --theme-color-uibg: #0C3980;
