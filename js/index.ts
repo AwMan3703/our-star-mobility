@@ -249,6 +249,18 @@ function selectIDCard(index: number) {
 
 // SCRIPT
 
+const cardSelector = document.getElementById('IDCard-selector')
+const cardSelector_level = document.getElementById('IDCard-selector-level')
+const cardSelector_button = document.getElementById('IDCard-selector-button')
+// @ts-ignore
+cardSelector_button.addEventListener('click', _ => {cardSelector.classList.add('open')})
+// @ts-ignore
+cardSelector_level.addEventListener('click', _ => {cardSelector.classList.remove('open')})
+
+// @ts-ignore
+document.getElementById('IDCard-add-button').addEventListener('click', _ => {redirect('addTravelPass.html')})
+
+
 const IDCard_count = getCards().length
 if (IDCard_count < 1) {
     console.warn('No IDCard detected, redirecting to addIDCard...')

@@ -287,3 +287,46 @@ nav img {
 #buttons #IDCard-add-button {
 	background-image: url("../src/plus.png");
 }
+
+
+#IDCard-selector-level {
+	pointer-events: none;
+	visibility: hidden;
+	opacity: 0;
+
+	position: absolute;
+	width: 100%;
+	height: 100%;
+
+	display: grid;
+	grid-template-rows: 1fr 50%;
+
+	background-color: rgba(0,0,0,.6);
+
+	transition: opacity .2s ease-in-out;
+}
+#IDCard-selector-level:has(#IDCard-selector.open) {
+	pointer-events: initial;
+	visibility: visible;
+	opacity: 1;
+}
+
+#IDCard-selector {
+	grid-row: 2;
+	translate: 0 100%;
+	opacity: 1;
+
+	background-color: whitesmoke;
+
+	transition: translate .2s ease-in-out;
+}
+#IDCard-selector.open {
+	translate: 0;
+}
+
+#IDCard-selector #title {
+	color: white;
+	font-weight: normal;
+	line-height: 1.1em;
+	background-color: var(--theme-color-uibg);
+}
