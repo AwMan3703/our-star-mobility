@@ -1,7 +1,7 @@
 import {IDCard, TravelPass} from "./classes.js"
-import {getCardPasses, getCards} from "./localStorage.js";
+import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
 import {shortenURL} from "./shortenURL.js";
-import {passDataToURLParameters, prettyDate, redirect} from "./utility.js";
+import {passDataToURLParameters, prettyDate, prettyTime, redirect} from "./utility.js";
 
 let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
@@ -77,12 +77,11 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
             idcard_pass_period.innerText = `${pass.period}`
             idcard_details_container.appendChild(idcard_pass_period)
 
-            const idcard_pass_expiry_date  = document.createElement('p')
-            idcard_pass_expiry_date.classList.add('idcard-details')
-            idcard_pass_expiry_date.classList.add('idcard-passpurchase')
-            idcard_pass_expiry_date.classList.add('idcard-passpurchase-date')
-            idcard_pass_expiry_date.innerText = `${prettyDate(pass.expiry)}`
-            idcard_details_container.appendChild(idcard_pass_expiry_date)
+            const idcard_pass_clock  = document.createElement('p')
+            idcard_pass_clock.classList.add('idcard-details')
+            idcard_pass_clock.classList.add('idcard-clock')
+            idcard_pass_clock.classList.add('real-time-clock')
+            idcard_details_container.appendChild(idcard_pass_clock)
 
             idcard_container.appendChild(idcard_details_container)
             //
@@ -315,6 +314,15 @@ IDCARDS.forEach(card => {
     counter += 1
 })
 
-
 // Do this so everything gets properly loaded
 selectIDCard(0)
+
+// Update pass cards every second because for some fucking reason they decided to put a live clock on them
+function updateClocks() {
+    const now = new Date()
+    const clocks = document.getElementsByClassName('real-time-clock')
+    for (const clock of clocks) {
+        clock.innerHTML = `${prettyDate(now)} ${prettyTime(now, true)}`
+    }
+}
+setInterval(updateClocks, 1000)
