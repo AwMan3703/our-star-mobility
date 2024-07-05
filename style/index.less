@@ -2,8 +2,10 @@
 
 body {
 	&:extend(.vstack);
-	height: 100dvh;
+	width: 100dvw;
+	height: 100lvh;
 
+	overflow-x: hidden;
 	font-family: Arial, sans-serif;
 }
 
@@ -341,9 +343,12 @@ nav img {
 	column-gap: 15px;
 	color: white;
 	background-color: var(--theme-color-uibg);
+
+	counter-increment: card-selector-index;
 }
 
-#IDCard-selector .item .index {
+#IDCard-selector .item:before {
+	content: '#'counter(card-selector-index);
 	grid-area: 1 / 1 / 4;
 	padding-inline: 20px;
 
@@ -361,6 +366,7 @@ nav img {
 #IDCard-selector .item .card-number {
 	grid-area: 1 / 2;
 	color: rgba(255, 255, 255, 0.5);
+	text-transform: uppercase;
 }
 #IDCard-selector .item .holder-name {
 	grid-area: 2 / 2;
@@ -373,8 +379,16 @@ nav img {
 	margin-block-start: 10px;
 	color: rgba(255, 255, 255, 0.75);
 }
-#IDCard-selector .item .description:first-letter {
+#IDCard-selector .item .pass-counter {
 	color: lime;
 	font-size: larger;
 	font-weight: bolder;
+}
+
+#IDCard-selector-drawer #IDCard-add-button {
+	margin-block-start: auto;
+
+	font-size: 72px;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
 }

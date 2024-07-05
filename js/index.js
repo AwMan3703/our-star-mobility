@@ -185,10 +185,6 @@ function _new_passCardSelector_item(card, i) {
         console.log('Switching to IDCard #', i);
         selectIDCard(i);
     });
-    const index = document.createElement('div');
-    index.classList.add('index');
-    index.innerText = `#${i + 1}`;
-    container.appendChild(index);
     const cardNumber = document.createElement('span');
     cardNumber.classList.add('card-number');
     cardNumber.innerText = `${card.number}`;
@@ -200,7 +196,9 @@ function _new_passCardSelector_item(card, i) {
     const description = document.createElement('span');
     description.classList.add('description');
     const sin_plu = cardPasses.length !== 1 ? 'i' : 'o';
-    description.innerText = `${cardPasses.length} titol${sin_plu} di viaggio associat${sin_plu}`;
+    description.innerHTML =
+        `<span class="pass-counter">${cardPasses.length}</span>`
+            + ` titol${sin_plu} di viaggio associat${sin_plu}`;
     container.appendChild(description);
     return container;
 }
