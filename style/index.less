@@ -33,7 +33,11 @@ nav img {
 
 #pass-cards-carousel {
 	margin-block: var(--padding-medium);
-	margin-inline: var(--padding-max);
+	padding-inline: var(--padding-max);
+	padding-block-end: var(--padding-max);
+	gap: var(--padding-max);
+
+	scroll-snap-type: x mandatory;
 }
 
 
@@ -49,8 +53,10 @@ nav img {
 
 	&:extend(.vstack);
 	&:extend(.shadow);
+	min-width: 100%;
 	align-items: center;
 	overflow: hidden;
+	scroll-snap-align: center;
 
 	color: white;
 	font-family: "Arial Medium", Arial, sans-serif;
@@ -251,6 +257,7 @@ nav img {
 	margin-block-start: auto;
 	margin-block-end: 100px;
 	margin-inline: auto;
+	gap: var(--padding-macro);
 }
 
 .pass-card-dot {
