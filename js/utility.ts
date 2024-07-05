@@ -14,12 +14,23 @@ export function toggleClass(element: HTMLElement, className: string) {
 export function capitalize(text: string) {
     return text[0].toUpperCase() + text.substring(1, text.length)}
 
+const fillerZero = (n: number) => {
+    if (String(n).length < 2) return '0'
+    else return ''
+}
+
 export function prettyDate(date: Date) {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+    return ''+
+        `${fillerZero(date.getDate())}${date.getDate()}/`+
+        `${fillerZero(date.getMonth())}${date.getMonth() + 1}/`+
+        `${date.getFullYear()}`
 }
 
 export function prettyTime(date: Date, seconds: boolean) {
-    return `${date.getHours()}:${date.getMinutes()}${seconds ? ':'+date.getSeconds() : ''}`
+    return ''+
+        `${fillerZero(date.getHours())}${date.getHours()}:`+
+        `${fillerZero(date.getMinutes())}${date.getMinutes()}`+
+        `${seconds ? (`:${fillerZero(date.getSeconds())}${date.getSeconds()}`) : ''}`
 }
 
 export function passDataToURLParameters(data: {

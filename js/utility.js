@@ -13,11 +13,23 @@ export function toggleClass(element, className) {
 export function capitalize(text) {
     return text[0].toUpperCase() + text.substring(1, text.length);
 }
+const fillerZero = (n) => {
+    if (String(n).length < 2)
+        return '0';
+    else
+        return '';
+};
 export function prettyDate(date) {
-    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+    return '' +
+        `${fillerZero(date.getDate())}${date.getDate()}/` +
+        `${fillerZero(date.getMonth())}${date.getMonth() + 1}/` +
+        `${date.getFullYear()}`;
 }
 export function prettyTime(date, seconds) {
-    return `${date.getHours()}:${date.getMinutes()}${seconds ? ':' + date.getSeconds() : ''}`;
+    return '' +
+        `${fillerZero(date.getHours())}${date.getHours()}:` +
+        `${fillerZero(date.getMinutes())}${date.getMinutes()}` +
+        `${seconds ? (`:${fillerZero(date.getSeconds())}${date.getSeconds()}`) : ''}`;
 }
 export function passDataToURLParameters(data) {
     //concatenate url parameter
