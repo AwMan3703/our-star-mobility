@@ -7,6 +7,15 @@ let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
 let CURRENT_IDCARD_PASSES:TravelPass[] = []
 
+// HANDLES
+
+const passCard_carousel = document.getElementById('pass-cards-carousel')
+
+const cardSelector = document.getElementById('IDCard-selector')
+const cardSelector_drawer = document.getElementById('IDCard-selector-drawer')
+const cardSelector_level = document.getElementById('IDCard-selector-level')
+const cardSelector_button = document.getElementById('IDCard-selector-button')
+
 
 // FUNCTIONS
 
@@ -19,6 +28,8 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 
     const container = document.createElement('div')
     container.classList.add('pass-card')
+    container.id = `pass-card-${i}`
+    container.dataset.itemIndex = String(i)
     container.style.setProperty('--card-color', `var(--theme-color-${pass.cardcolor})`)
 
     const logo = document.createElement('img')
@@ -220,6 +231,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
 function _new_passCard_dot(i: number) {
     const dot = document.createElement('div')
     dot.classList.add('pass-card-dot')
+    dot.id = `pass-card-dot-${i}`
     dot.dataset.index = String(i)
     return dot
 }
@@ -275,6 +287,21 @@ function refresh_passes() {
     })
 }
 
+function updateCarouselDots() {
+    // @ts-ignore
+    const scrollDistance = passCard_carousel.scrollLeft
+    // @ts-ignore
+    const cardsWidth = document.querySelector('.pass-card').getBoundingClientRect().width
+
+    // Get the index of the card that's currently being viewed
+    const scrollIndex = Math.floor(scrollDistance / cardsWidth) + 1
+
+    const activeDot = document.querySelector('.pass-card-dot.active')
+    if (activeDot) activeDot.classList.remove('active')
+    // @ts-ignore
+    document.getElementById(`pass-card-dot-${scrollIndex}`).classList.add('active')
+}
+
 function selectIDCard(index: number) {
     CURRENT_IDCARD_INDEX = index
     CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[index])
@@ -284,21 +311,8 @@ function selectIDCard(index: number) {
 
 // SCRIPT
 
-const cardSelector = document.getElementById('IDCard-selector')
-const cardSelector_drawer = document.getElementById('IDCard-selector-drawer')
-const cardSelector_level = document.getElementById('IDCard-selector-level')
-const cardSelector_button = document.getElementById('IDCard-selector-button')
 // @ts-ignore
-cardSelector_button.addEventListener('click', _ => {cardSelector_drawer.classList.add('open')})
-// @ts-ignore
-cardSelector_level.addEventListener('click', _ => {cardSelector_drawer.classList.remove('open')})
-
-// Add redirection buttons
-// @ts-ignore
-document.getElementById('IDCard-add-button').addEventListener('click', _ => {redirect('addIDCard.html')})
-// @ts-ignore
-document.getElementById('TravelPass-add-button').addEventListener('click', _ => {redirect('addTravelPass.html')})
-
+passCard_carousel.addEventListener('scroll', updateCarouselDots)
 
 if (IDCARDS.length < 1) {
     console.warn('No IDCard detected, redirecting to addIDCard...')
@@ -316,6 +330,18 @@ IDCARDS.forEach(card => {
 
 // Do this so everything gets properly loaded
 selectIDCard(0)
+
+// @ts-ignore
+cardSelector_button.addEventListener('click', _ => {cardSelector_drawer.classList.add('open')})
+// @ts-ignore
+cardSelector_level.addEventListener('click', _ => {cardSelector_drawer.classList.remove('open')})
+
+// Add redirection buttons
+// @ts-ignore
+document.getElementById('IDCard-add-button').addEventListener('click', _ => {redirect('addIDCard.html')})
+// @ts-ignore
+document.getElementById('TravelPass-add-button').addEventListener('click', _ => {redirect('addTravelPass.html')})
+
 
 // Update pass cards every second because for some fucking reason they decided to put a live clock on them
 function updateClocks() {
