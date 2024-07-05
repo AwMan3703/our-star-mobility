@@ -4,7 +4,7 @@
 }
 :root {
   --color-layer: rgba(0, 0, 0, 0.075);
-  --theme-color-uibg: #0C3980;
+  --theme-color-uibg: #004FAB;
   --theme-color-darkblue: #102D69;
   --theme-color-lightblue: #00B0F0;
   --theme-color-yellow: #FFD200;
@@ -204,7 +204,7 @@ nav img {
   width: calc(100% - 28px);
   overflow: hidden;
   color: black;
-  background-color: #E0EBEF;
+  background-color: #E0E1E5;
   border-radius: 50px;
 }
 .pass-card .idcard-container .idcard-detailscontainer {
@@ -215,7 +215,7 @@ nav img {
   margin-inline-start: 28px;
 }
 .pass-card .idcard-container .idcard-detailscontainer .idcard-details {
-  line-height: 1.2em;
+  line-height: 1.275em;
 }
 .pass-card .idcard-container .idcard-detailscontainer .idcard-details:last-child {
   margin-block-end: 0;
@@ -300,7 +300,7 @@ nav img {
   color: black;
   padding-inline: 38px;
   box-sizing: border-box;
-  background-color: #DCE5E7;
+  background-color: #E0E1E5;
 }
 #pass-cards-dots {
   width: fit-content;
