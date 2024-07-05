@@ -235,6 +235,9 @@ const cardSelector_button = document.getElementById('IDCard-selector-button');
 cardSelector_button.addEventListener('click', _ => { cardSelector_drawer.classList.add('open'); });
 // @ts-ignore
 cardSelector_level.addEventListener('click', _ => { cardSelector_drawer.classList.remove('open'); });
+// Add redirection buttons
+// @ts-ignore
+document.getElementById('IDCard-add-button').addEventListener('click', _ => { redirect('addIDCard.html'); });
 // @ts-ignore
 document.getElementById('TravelPass-add-button').addEventListener('click', _ => { redirect('addTravelPass.html'); });
 if (IDCARDS.length < 1) {
