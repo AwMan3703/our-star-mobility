@@ -232,7 +232,7 @@ function updateCarouselDots() {
     // @ts-ignore
     const cardsWidth = document.querySelector('.pass-card').getBoundingClientRect().width;
     // Get the index of the card that's currently being viewed
-    const scrollIndex = Math.floor(scrollDistance / cardsWidth) + 1;
+    const scrollIndex = Math.round(scrollDistance / cardsWidth) + 1;
     const activeDot = document.querySelector('.pass-card-dot.active');
     if (activeDot)
         activeDot.classList.remove('active');
