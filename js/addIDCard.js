@@ -2,6 +2,8 @@ import { Human, IDCard } from "./classes.js";
 import { getCards, setCards } from "./localStorage.js";
 import { redirect } from "./utility.js";
 // CONSTANTS
+const fileReader = new FileReader();
+const photo_input = document.querySelector('#IDCard-form #photo');
 const form_inputs = document.querySelectorAll('#IDCard-form input, #IDCard-form button');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
 // FUNCTIONS
@@ -25,6 +27,10 @@ function readFormData() {
     checkValid(date, 'Data di nascita del titolare');
     const taxid = getValue('#IDCard-form #holder-TAXID');
     checkValid(taxid, 'Codice fiscale del titolare');
+    if (fileReader.readyState === fileReader.LOADING) {
+        alert('Attendere il caricamento della fototessera...');
+        return;
+    }
     // @ts-ignore
     const photoDataURL = document.querySelector('#IDCard-form #photo').dataset.dataurl;
     checkValid(photoDataURL, 'Fototessera del titolare');
@@ -59,10 +65,6 @@ function saveIDCard(card) {
     setCards(savedCards);
 }
 function addCard() {
-    if (fileReader.readyState !== fileReader.DONE) {
-        alert('Attendere il caricamento della fototessera...');
-        return;
-    }
     const formData = readFormData();
     if (!formData)
         return;
@@ -90,8 +92,6 @@ disclaimer_checkbox.addEventListener('change', _ => {
 form_inputs.forEach(form_input => { form_input.setAttribute('disabled', "true"); });
 // @ts-ignore
 document.getElementById('IDCard-form').classList.add('disabled');
-const fileReader = new FileReader();
-const photo_input = document.querySelector('#IDCard-form #photo');
 // @ts-ignore
 photo_input.addEventListener('change', e => {
     // @ts-ignore
