@@ -1,7 +1,7 @@
 import {IDCard, TravelPass} from "./classes.js"
 import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
 import {shortenURL} from "./shortenURL.js";
-import {passDataToURLParameters, prettyDate, prettyTime, redirect} from "./utility.js";
+import {passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect} from "./utility.js";
 
 let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
@@ -142,7 +142,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         const purchase_date = document.createElement('p')
         purchase_date.classList.add('details')
         purchase_date.classList.add('details-purchasedate')
-        purchase_date.innerText = `Acquistato il: ${pass.purchase.getDate()}/${pass.purchase.getMonth() + 1}/${pass.purchase.getFullYear()}`
+        purchase_date.innerText = `Acquistato il: ${prettyDate(pass.purchase)}`
         details_left.appendChild(purchase_date)
 
         details_container.appendChild(details_left)
@@ -163,7 +163,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         const price = document.createElement('p')
         price.classList.add('details')
         price.classList.add('details-price')
-        price.innerText = `Importo: ${pass.price} €`
+        price.innerText = `Importo: ${prettyPrice(pass.price)} €`
         details_right.appendChild(price)
 
         const pass_number = document.createElement('p')
