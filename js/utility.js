@@ -13,23 +13,28 @@ export function toggleClass(element, className) {
 export function capitalize(text) {
     return text[0].toUpperCase() + text.substring(1, text.length);
 }
-const fillerZero = (n) => {
-    if (String(n).length < 2)
-        return '0';
+const fillZeros = (n, expected_length) => {
+    const nsl = String(n).length;
+    if (nsl < expected_length)
+        return '0'.repeat(expected_length - nsl) + n;
     else
-        return '';
+        return n;
 };
 export function prettyDate(date) {
     return '' +
-        `${fillerZero(date.getDate())}${date.getDate()}/` +
-        `${fillerZero(date.getMonth())}${date.getMonth() + 1}/` +
+        `${fillZeros(date.getDate(), 2)}/` +
+        `${fillZeros(date.getMonth(), 2)}/` +
         `${date.getFullYear()}`;
 }
 export function prettyTime(date, seconds) {
     return '' +
-        `${fillerZero(date.getHours())}${date.getHours()}:` +
-        `${fillerZero(date.getMinutes())}${date.getMinutes()}` +
-        `${seconds ? (`:${fillerZero(date.getSeconds())}${date.getSeconds()}`) : ''}`;
+        `${fillZeros(date.getHours(), 2)}:` +
+        `${fillZeros(date.getMinutes(), 2)}` +
+        `${seconds ? (`:${fillZeros(date.getSeconds(), 2)}`) : ''}`;
+}
+export function prettyPrice(price) {
+    const dec = String(price).split('.')[1];
+    return dec && dec.length > 0 ? String(price.toFixed(2)) : price + '.0';
 }
 export function passDataToURLParameters(data) {
     //concatenate url parameter
