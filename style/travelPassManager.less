@@ -1,0 +1,16 @@
+@import "generic";
+
+body {
+	&:extend(.vstack);
+	margin: revert;
+	gap: var(--padding-medium);
+}
+
+#TravelPass-list {
+	gap: var(--padding-min);
+}
+#TravelPass-list.no-passes::before {
+	content: 'Nessun titolo abbinato';
+	font-size: larger;
+	font-weight: bold;
+}

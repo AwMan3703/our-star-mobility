@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="height=device-width, initial-scale=2">
+
+        <title>Travel Passes Manager</title>
+        <link rel="shortcut icon" href="src/favicon.ico" type="image/x-icon">
+
+        <link rel="stylesheet" href="./style/reset.css">
+        <link rel="stylesheet" href="style/generic.css">
+        <link rel="stylesheet" href="style/travelPassManager.css">
+    </head>
+    <body>
+        <div id="disclaimer-box" class="vstack material-box">
+            <h3>Per favore leggere con attenzione il seguente disclaimer:</h3>
+            <iframe src="README.md"></iframe>
+            <div class="material-box">
+                <input type="checkbox" name="agree" id="disclaimer-agree-checkbox">
+                <label for="disclaimer-agree-checkbox">Comprendo il disclaimer e sollevo lo Sviluppatore da qualsiasi responsabilità derivante dall'utilizzo che farò del Simulatore</label>
+            </div>
+        </div>
+
+        <div class="material-box">
+            <button id="add-TravelPass-button">Nuovo titolo</button>
+        </div>
+
+        <div class="vstack material-box">
+            <div id="TravelPass-list" class="vstack">
+            </div>
+            <div id="TravelPass-list-options" class="hstack">
+                <button id="remove-pass" disabled>Rimuovi titolo</button>
+            </div>
+        </div>
+
+        <script src="js/travelPassManager.js" type="module"></script>
+    </body>
+</html>

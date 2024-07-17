@@ -271,7 +271,7 @@ cardSelector_level.addEventListener('click', _ => { cardSelector_drawer.classLis
 // @ts-ignore
 document.getElementById('IDCard-add-button').addEventListener('click', _ => { redirect('addIDCard.html'); });
 // @ts-ignore
-document.getElementById('TravelPass-add-button').addEventListener('click', _ => { redirect('addTravelPass.html'); });
+document.getElementById('TravelPass-add-button').addEventListener('click', _ => { redirect(`travelPassManager.html?cardIndex=${CURRENT_IDCARD_INDEX}`); });
 // Update pass cards every second because for some fucking reason they decided to put a live clock on them
 function updateClocks() {
     const now = new Date();
