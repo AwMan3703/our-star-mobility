@@ -1,4 +1,4 @@
-import {Human, IDCard, TravelPass} from "./classes.js";
+import {IDCard, TravelPass} from "./classes.js";
 import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
 import {capitalize, redirect} from "./utility.js";
 
