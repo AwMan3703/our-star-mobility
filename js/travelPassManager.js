@@ -81,6 +81,7 @@ CURRENT_IDCARD_PASSES.forEach(pass => {
     passes_list.appendChild(_new_travelPassSelector(pass, counter));
     counter += 1;
 });
+// FIXME: inputs are not disabled on launch
 // Disable all inputs until the disclaimer is accepted
 // @ts-ignore
 disclaimer_checkbox.addEventListener('change', _ => {
