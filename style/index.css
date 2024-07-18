@@ -15,6 +15,9 @@
   --padding-max: 20px;
   --padding-macro: 30px;
 }
+body {
+  font-family: system-ui;
+}
 .vstack,
 body,
 .pass-card {
