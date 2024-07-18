@@ -10,7 +10,6 @@ const IDCARDS = getCards();
 const CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[CURRENT_IDCARD_INDEX]);
 const remove_pass_button = document.querySelector('#TravelPass-list-options #remove-pass');
 const passes_list = document.getElementById('TravelPass-list');
-const list_checkboxes = document.querySelectorAll('#TravelPass-list .TravelPass-selector');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
 // FUNCTIONS
 function getCurrentCard() {
@@ -47,7 +46,7 @@ function _new_travelPassSelector(pass, index) {
     const label = document.createElement('label');
     // @ts-ignore
     label.for = checkbox.id;
-    label.innerText = `${pass.from}-${pass.to} ${pass.period}`;
+    label.innerText = `${pass.from}-${pass.to} / ${pass.period}`;
     container.appendChild(label);
     return container;
 }
@@ -71,6 +70,8 @@ function remove_pass(passIndex) {
     document.getElementById(`travelPass-selector-${passIndex}`).remove();
 }
 // SCRIPT
+// @ts-ignore
+passes_list.dataset.idcardNumber = getCurrentCard().number;
 // List the available passes
 if (CURRENT_IDCARD_PASSES.length === 0) { // @ts-ignore
     passes_list.classList.add('no-passes');
@@ -81,8 +82,7 @@ CURRENT_IDCARD_PASSES.forEach(pass => {
     passes_list.appendChild(_new_travelPassSelector(pass, counter));
     counter += 1;
 });
-// FIXME: inputs are not disabled on launch
-// Disable all inputs until the disclaimer is accepted
+const list_checkboxes = document.querySelectorAll('#TravelPass-list .TravelPass-selector input[type="checkbox"]');
 // @ts-ignore
 disclaimer_checkbox.addEventListener('change', _ => {
     // @ts-ignore
@@ -97,6 +97,9 @@ disclaimer_checkbox.addEventListener('change', _ => {
         passes_list.classList.add('disabled');
     }
 });
+list_checkboxes.forEach(form_input => { form_input.setAttribute('disabled', "true"); });
+// @ts-ignore
+passes_list.classList.add('disabled');
 // @ts-ignore
 document.getElementById('add-TravelPass-button').addEventListener('click', _ => {
     redirect('addTravelPass.html');
@@ -108,6 +111,3 @@ remove_pass_button.addEventListener('click', _ => {
     });
     redirect('index.html');
 });
-list_checkboxes.forEach(form_input => { form_input.setAttribute('disabled', "true"); });
-// @ts-ignore
-passes_list.classList.add('disabled');
