@@ -73,6 +73,19 @@ button:disabled {
 button:active {
   background-color: var(--theme-color-yellow);
 }
+button.danger {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  background-color: red;
+  font-weight: bold;
+}
+button.danger::after {
+  content: '⚠️';
+}
+button.danger:active {
+  background-color: #dc1414;
+}
 div:has(> input[type="radio"]),
 div:has(> input[type="checkbox"]),
 div:has(> label[for*="radio"]),
