@@ -246,6 +246,9 @@ nav img {
   justify-content: center;
   border-radius: inherit;
   background-color: white;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 .pass-card .idcard-container .idcard-stripes-container {
   grid-area: 2 / 1 / 2 / 3;

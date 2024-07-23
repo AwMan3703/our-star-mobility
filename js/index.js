@@ -73,13 +73,10 @@ function _new_passCard(card, pass, i) {
     idcard_details_container.appendChild(idcard_pass_clock);
     idcard_container.appendChild(idcard_details_container);
     //
-    const idcard_photo_container = document.createElement('div');
-    idcard_photo_container.classList.add('idcard-photo-container');
-    const idcard_photo = document.createElement('img');
-    idcard_photo.classList.add('idcard-photo');
-    idcard_photo.src = `${card.photoDataURL}`;
-    idcard_photo_container.appendChild(idcard_photo);
-    idcard_container.appendChild(idcard_photo_container);
+    const idcard_photo = document.createElement('div');
+    idcard_photo.classList.add('idcard-photo-container');
+    idcard_photo.style.backgroundImage = `url('${card.photoDataURL}')`;
+    idcard_container.appendChild(idcard_photo);
     const idcard_stripes_container = document.createElement('div');
     idcard_stripes_container.classList.add('idcard-stripes-container');
     idcard_stripes_container.classList.add(`${isPassValid ? 'valid' : 'expired'}-pass`);
