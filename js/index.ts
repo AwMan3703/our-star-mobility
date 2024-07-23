@@ -92,6 +92,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
             idcard_pass_clock.classList.add('idcard-details')
             idcard_pass_clock.classList.add('idcard-clock')
             idcard_pass_clock.classList.add('real-time-clock')
+            idcard_pass_clock.innerText = new Date(Date.now()).toLocaleString()
             idcard_details_container.appendChild(idcard_pass_clock)
 
             idcard_container.appendChild(idcard_details_container)
