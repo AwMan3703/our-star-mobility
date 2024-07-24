@@ -23,7 +23,7 @@ const fillZeros = (n, expected_length) => {
 export function prettyDate(date) {
     return '' +
         `${fillZeros(date.getDate(), 2)}/` +
-        `${fillZeros(date.getMonth(), 2)}/` +
+        `${fillZeros(date.getMonth() + 1, 2)}/` +
         `${date.getFullYear()}`;
 }
 export function prettyTime(date, seconds) {
