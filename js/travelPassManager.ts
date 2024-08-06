@@ -12,6 +12,7 @@ const IDCARDS:IDCard[] = getCards()
 const CURRENT_IDCARD_PASSES:TravelPass[] = getCardPasses(IDCARDS[CURRENT_IDCARD_INDEX])
 
 
+const add_pass_button = document.querySelector('#add-TravelPass-button')
 const remove_pass_button = document.querySelector('#TravelPass-list-options #remove-pass')
 const passes_list = document.getElementById('TravelPass-list')
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox')
@@ -70,13 +71,13 @@ function get_selected_TravelPasses() {
             selected.push(parseInt(e.dataset.passIndex))
         }
     })
-    console.log(selected)
     return selected
 }
 
 function remove_pass(passIndex: number) {
     const passes: TravelPass[] = CURRENT_IDCARD_PASSES
     passes.splice(passIndex, 1)
+    alert(passes.length)
 
     setCardPasses(getCurrentCard(), passes)
 
@@ -109,17 +110,23 @@ disclaimer_checkbox.addEventListener('change', _=> {
         list_checkboxes.forEach(form_input => {form_input.removeAttribute('disabled')})
         // @ts-ignore
         passes_list.classList.remove('disabled')
+        // @ts-ignore
+        add_pass_button.removeAttribute('disabled')
     }
     else {
         list_checkboxes.forEach(form_input => {form_input.setAttribute('disabled', "true")})
         // @ts-ignore
         passes_list.classList.add('disabled')
+        // @ts-ignore
+        add_pass_button.setAttribute('disabled', 'true')
     }
 })
 
 list_checkboxes.forEach(form_input => {form_input.setAttribute('disabled', "true")})
 // @ts-ignore
 passes_list.classList.add('disabled')
+// @ts-ignore
+add_pass_button.setAttribute('disabled', 'true')
 
 
 // @ts-ignore
@@ -128,7 +135,7 @@ document.getElementById('add-TravelPass-button').addEventListener('click', _ => 
 })
 // @ts-ignore
 remove_pass_button.addEventListener('click', _ => {
-    get_selected_TravelPasses().forEach(passIndex => {
+    get_selected_TravelPasses().reverse().forEach(passIndex => {
         remove_pass(passIndex)
     })
     redirect('index.html')
