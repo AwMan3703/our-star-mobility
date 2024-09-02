@@ -65,7 +65,6 @@ function get_selected_TravelPasses() {
 function remove_pass(passIndex) {
     const passes = CURRENT_IDCARD_PASSES;
     passes.splice(passIndex, 1);
-    alert(passes.length);
     setCardPasses(getCurrentCard(), passes);
     // @ts-ignore
     document.getElementById(`travelPass-selector-${passIndex}`).remove();

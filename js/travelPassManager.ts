@@ -77,7 +77,6 @@ function get_selected_TravelPasses() {
 function remove_pass(passIndex: number) {
     const passes: TravelPass[] = CURRENT_IDCARD_PASSES
     passes.splice(passIndex, 1)
-    alert(passes.length)
 
     setCardPasses(getCurrentCard(), passes)
 
