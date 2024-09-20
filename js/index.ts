@@ -203,6 +203,10 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         pass_purchase: pass.purchase,
         photo_dataURL: card.photoDataURL
     })}`
+
+    // FIXME: shortening a new URL every time overloads the API and could lead to forbidden access.
+    // Bind a shortened URL to a pass when it is created instead.
+    /*
     shortenURL(qrURL, response => {
         console.log('Compressed pass #', i, 'URL to', response.short_url)
         // @ts-ignore
@@ -214,6 +218,7 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
             colorLight : '#fff'
         });
     })
+     */
 
     const info = document.createElement('p')
     info.classList.add('info')

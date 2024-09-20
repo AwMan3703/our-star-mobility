@@ -1,7 +1,7 @@
 // SHORTEN URLS
 
 export function shortenURL(url: string, callback: (response: {short_url: string}) => void) {
-    const APIUrl = `https://spoo.me/?url=${encodeURIComponent(url)}`;
+    const APIUrl = 'https://spoo.me/';
     const data = new URLSearchParams();
     data.append('url', url);
 

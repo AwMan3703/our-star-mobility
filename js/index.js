@@ -1,5 +1,4 @@
 import { getCardPasses, getCards, getCurrentCardIndex, setCurrentCardIndex } from "./localStorage.js";
-import { shortenURL } from "./shortenURL.js";
 import { passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect } from "./utility.js";
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
@@ -157,17 +156,21 @@ function _new_passCard(card, pass, i) {
         pass_purchase: pass.purchase,
         photo_dataURL: card.photoDataURL
     })}`;
+    // FIXME: shortening a new URL every time overloads the API and could lead to forbidden access.
+    // Bind a shortened URL to a pass when it is created instead.
+    /*
     shortenURL(qrURL, response => {
-        console.log('Compressed pass #', i, 'URL to', response.short_url);
+        console.log('Compressed pass #', i, 'URL to', response.short_url)
         // @ts-ignore
         const qrcode = new QRCode(qrcode_block, {
             text: response.short_url,
             width: 215,
             height: 215,
-            colorDark: '#000',
-            colorLight: '#fff'
+            colorDark : '#000',
+            colorLight : '#fff'
         });
-    });
+    })
+     */
     const info = document.createElement('p');
     info.classList.add('info');
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186';

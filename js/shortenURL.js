@@ -1,6 +1,6 @@
 // SHORTEN URLS
 export function shortenURL(url, callback) {
-    const APIUrl = `https://spoo.me/?url=${encodeURIComponent(url)}`;
+    const APIUrl = 'https://spoo.me/';
     const data = new URLSearchParams();
     data.append('url', url);
     const xhr = new XMLHttpRequest();
