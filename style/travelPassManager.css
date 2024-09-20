@@ -101,7 +101,7 @@ body {
   gap: var(--padding-min);
 }
 #TravelPass-list::before {
-  content: 'Gestisci titoli di viaggio per la tessera #' attr(data-idcard-number);
+  content: 'Gestisci titoli di viaggio per la tessera di ' attr(data-idcard-holder) ' (' attr(data-idcard-number) ')';
   font-weight: bold;
   opacity: 0.5;
 }

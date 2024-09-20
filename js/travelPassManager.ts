@@ -1,15 +1,15 @@
 import {IDCard, TravelPass} from "./classes.js";
-import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
+import {getCardPasses, getCards, getCurrentCardIndex, setCardPasses, setCards} from "./localStorage.js";
 import {capitalize, redirect} from "./utility.js";
 
 
 // CONSTANTS
 
-const CURRENT_IDCARD_INDEX = new URLSearchParams(window.location.search).get('cardIndex');
-if (!CURRENT_IDCARD_INDEX) { redirect('index.html') }
+// Get card index via URL parameter — obsolete, use getCurrentIDCardIndex() instead
+//const CURRENT_IDCARD_INDEX = new URLSearchParams(window.location.search).get('cardIndex');
 const IDCARDS:IDCard[] = getCards()
 // @ts-ignore
-const CURRENT_IDCARD_PASSES:TravelPass[] = getCardPasses(IDCARDS[CURRENT_IDCARD_INDEX])
+const CURRENT_IDCARD_PASSES:TravelPass[] = getCardPasses(IDCARDS[getCurrentCardIndex()])
 
 
 const add_pass_button = document.querySelector('#add-TravelPass-button')
@@ -22,7 +22,7 @@ const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox')
 
 function getCurrentCard() {
     // @ts-ignore
-    return IDCARDS[CURRENT_IDCARD_INDEX]
+    return IDCARDS[getCurrentCardIndex()]
 }
 
 function _new_travelPassSelector(pass: TravelPass, index: number) {
@@ -87,8 +87,12 @@ function remove_pass(passIndex: number) {
 
 // SCRIPT
 
+const currentCard = getCurrentCard()
+
 // @ts-ignore
-passes_list.dataset.idcardNumber = getCurrentCard().number
+passes_list.dataset.idcardNumber = currentCard.number
+// @ts-ignore
+passes_list.dataset.idcardHolder = `${currentCard.holder.firstName} ${currentCard.holder.lastName}`
 
 // List the available passes
 if (CURRENT_IDCARD_PASSES.length===0) { // @ts-ignore
@@ -129,7 +133,7 @@ add_pass_button.setAttribute('disabled', 'true')
 
 
 // @ts-ignore
-document.getElementById('add-TravelPass-button').addEventListener('click', _ => {
+add_pass_button.addEventListener('click', _ => {
     redirect('addTravelPass.html')
 })
 // @ts-ignore

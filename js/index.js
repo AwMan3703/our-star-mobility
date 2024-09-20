@@ -1,7 +1,6 @@
-import { getCardPasses, getCards } from "./localStorage.js";
+import { getCardPasses, getCards, getCurrentCardIndex, setCurrentCardIndex } from "./localStorage.js";
 import { shortenURL } from "./shortenURL.js";
 import { passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect } from "./utility.js";
-let CURRENT_IDCARD_INDEX = 0;
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
 // HANDLES
@@ -12,7 +11,7 @@ const cardSelector_level = document.getElementById('IDCard-selector-level');
 const cardSelector_button = document.getElementById('IDCard-selector-button');
 // FUNCTIONS
 function getCurrentCard() {
-    return IDCARDS[CURRENT_IDCARD_INDEX];
+    return IDCARDS[getCurrentCardIndex()];
 }
 function _new_passCard(card, pass, i) {
     const isPassValid = pass.expiry >= new Date(Date());
@@ -238,9 +237,9 @@ function updateCarouselDots() {
     document.getElementById(`pass-card-dot-${scrollIndex}`).classList.add('active');
 }
 function selectIDCard(index) {
-    CURRENT_IDCARD_INDEX = index;
     CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[index]);
-    console.log(`Current IDCard has ${CURRENT_IDCARD_PASSES.length} passes`);
+    setCurrentCardIndex(index);
+    console.log(`Current IDCard (#${index}) has ${CURRENT_IDCARD_PASSES.length} passes`);
     refresh_passes();
 }
 // SCRIPT
@@ -259,8 +258,8 @@ IDCARDS.forEach(card => {
     cardSelector.appendChild(_new_passCardSelector_item(card, counter));
     counter += 1;
 });
-// Do this so everything gets properly loaded
-selectIDCard(0);
+// Select and load the current card's passes
+selectIDCard(getCurrentCardIndex());
 // @ts-ignore
 cardSelector_button.addEventListener('click', _ => { cardSelector_drawer.classList.add('open'); });
 // @ts-ignore
@@ -269,7 +268,7 @@ cardSelector_level.addEventListener('click', _ => { cardSelector_drawer.classLis
 // @ts-ignore
 document.getElementById('IDCard-add-button').addEventListener('click', _ => { redirect('addIDCard.html'); });
 // @ts-ignore
-document.getElementById('TravelPass-add-button').addEventListener('click', _ => { redirect(`travelPassManager.html?cardIndex=${CURRENT_IDCARD_INDEX}`); });
+document.getElementById('TravelPass-add-button').addEventListener('click', _ => { redirect(`travelPassManager.html?cardIndex=${getCurrentCardIndex()}`); });
 // Update pass cards every second because for some fucking reason they decided to put a live clock on them
 function updateClocks() {
     const now = new Date();

@@ -93,7 +93,10 @@ function saveIDCard(card:IDCard) {
 
 function addCard() {
     const formData = readFormData()
-    if (!formData) return
+    if (!formData) {
+        alert('Error creating ID card! :(')
+        return
+    }
     const card = makeIDCard(formData)
     saveIDCard(card)
     alert('Tessera aggiunta')

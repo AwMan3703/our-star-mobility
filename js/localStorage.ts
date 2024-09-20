@@ -2,6 +2,20 @@ import {Human, IDCard, TravelPass} from "./classes.js";
 
 // LOCALSTORAGE STUFF
 
+const localStorageCurrentCardIndexKey: string = 'currentIDCardIndex'
+export function getCurrentCardIndex() {
+    // @ts-ignore
+    const value = localStorage.getItem(localStorageCurrentCardIndexKey)
+    let index = parseInt(value ? value : "0")
+    index = getCards().length > index ? index : 0 // Ensure index is within card list length
+    return index
+}
+export function setCurrentCardIndex(newIndex: number) {
+    let index = parseInt(String(newIndex)) // Make it an int for sure (float -> string -> int)
+    index = getCards().length > index ? index : 0 // Ensure index is within card list length
+    localStorage.setItem(localStorageCurrentCardIndexKey, String(index))
+}
+
 const localStorageCardListKey: string = 'IDCards'
 export function getCards() {
     const cards:IDCard[] = []

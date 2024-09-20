@@ -1,9 +1,8 @@
 import {IDCard, TravelPass} from "./classes.js"
-import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
+import {getCardPasses, getCards, getCurrentCardIndex, setCardPasses, setCurrentCardIndex} from "./localStorage.js";
 import {shortenURL} from "./shortenURL.js";
 import {passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect} from "./utility.js";
 
-let CURRENT_IDCARD_INDEX: number = 0
 let IDCARDS:IDCard[] = getCards()
 let CURRENT_IDCARD_PASSES:TravelPass[] = []
 
@@ -20,7 +19,7 @@ const cardSelector_button = document.getElementById('IDCard-selector-button')
 // FUNCTIONS
 
 function getCurrentCard() {
-    return IDCARDS[CURRENT_IDCARD_INDEX]
+    return IDCARDS[getCurrentCardIndex()]
 }
 
 function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
@@ -299,9 +298,9 @@ function updateCarouselDots() {
 }
 
 function selectIDCard(index: number) {
-    CURRENT_IDCARD_INDEX = index
     CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[index])
-    console.log(`Current IDCard has ${CURRENT_IDCARD_PASSES.length} passes`)
+    setCurrentCardIndex(index)
+    console.log(`Current IDCard (#${index}) has ${CURRENT_IDCARD_PASSES.length} passes`)
     refresh_passes()
 }
 
@@ -324,8 +323,8 @@ IDCARDS.forEach(card => {
     counter += 1
 })
 
-// Do this so everything gets properly loaded
-selectIDCard(0)
+// Select and load the current card's passes
+selectIDCard(getCurrentCardIndex())
 
 // @ts-ignore
 cardSelector_button.addEventListener('click', _ => {cardSelector_drawer.classList.add('open')})
@@ -336,7 +335,7 @@ cardSelector_level.addEventListener('click', _ => {cardSelector_drawer.classList
 // @ts-ignore
 document.getElementById('IDCard-add-button').addEventListener('click', _ => {redirect('addIDCard.html')})
 // @ts-ignore
-    document.getElementById('TravelPass-add-button').addEventListener('click', _ => {redirect(`travelPassManager.html?cardIndex=${CURRENT_IDCARD_INDEX}`)})
+document.getElementById('TravelPass-add-button').addEventListener('click', _ => {redirect(`travelPassManager.html?cardIndex=${getCurrentCardIndex()}`)})
 
 
 // Update pass cards every second because for some fucking reason they decided to put a live clock on them
