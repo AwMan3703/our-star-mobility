@@ -8,13 +8,17 @@ const IDCARDS = getCards();
 const CURRENT_IDCARD_PASSES = getCardPasses(IDCARDS[getCurrentCardIndex()]);
 const add_pass_button = document.querySelector('#add-TravelPass-button');
 const remove_pass_button = document.querySelector('#TravelPass-list-options #remove-pass');
+const remove_IDCard_button = document.querySelector('#remove-IDCard-button');
 const passes_list = document.getElementById('TravelPass-list');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
 // FUNCTIONS
 function getCurrentCard() {
     // @ts-ignore
-    return IDCARDS[CURRENT_IDCARD_INDEX];
     return IDCARDS[getCurrentCardIndex()];
+}
+function removeIDCard(cardNumber) {
+    const updatedCards = IDCARDS.filter(card => card.number !== cardNumber);
+    setCards(updatedCards);
 }
 function _new_travelPassSelector(pass, index) {
     const container = document.createElement('div');
@@ -117,5 +121,15 @@ remove_pass_button.addEventListener('click', _ => {
     get_selected_TravelPasses().reverse().forEach(passIndex => {
         remove_pass(passIndex);
     });
+    redirect('index.html');
+});
+// @ts-ignore
+remove_IDCard_button.addEventListener('click', _ => {
+    const card = getCurrentCard();
+    if (confirm('Vuoi davvero eliminare la tessera ' +
+        `${card.number} (${card.holder.firstName} ${card.holder.lastName})` +
+        ' e i titoli associati? L\'operazione non è reversibile.')) {
+        removeIDCard(card.number);
+    }
     redirect('index.html');
 });
