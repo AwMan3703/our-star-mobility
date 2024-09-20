@@ -219,7 +219,16 @@ function _new_passCard(card:IDCard, pass:TravelPass, i:number):HTMLElement {
         });
     })
      */
-
+    // TEMPORARY SOLUTION //
+    const qrcode = new QRCode(qrcode_block, {
+            // The verification page won't have any pass data, but at least there's a QR code to display
+            text: 'https://awman3703.github.io/our-star-mobility/passVerification.html?',
+            width: 215,
+            height: 215,
+            colorDark : '#000',
+            colorLight : '#fff'
+        });
+    // ------------------ //
     const info = document.createElement('p')
     info.classList.add('info')
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186'
