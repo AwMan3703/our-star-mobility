@@ -1,5 +1,5 @@
 import {IDCard, TravelPass} from "./classes.js";
-import {getCardPasses, getCards, getCurrentCardIndex, setCardPasses} from "./localStorage.js";
+import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
 import {capitalize, redirect} from "./utility.js";
 
 
@@ -14,10 +14,6 @@ const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox')
 
 
 // FUNCTIONS
-
-function getCurrentCard() {
-    return IDCARDS[getCurrentCardIndex()]
-}
 
 function _new_IDCardSelector(card: IDCard, index: number) {
     const container = document.createElement('div')
@@ -106,7 +102,7 @@ function readFormData() {
     }
 }
 
-function makeTravelPass(card: IDCard, passData: {
+function makeTravelPass(data: {
     from: string;
     to: string;
     line: string;
@@ -121,20 +117,18 @@ function makeTravelPass(card: IDCard, passData: {
     cardcolor: string;
 }):TravelPass {
     return new TravelPass(
-        card,
-        passData.from,
-        passData.to,
-        passData.line,
-        passData.type,
-        passData.period,
-        passData.price,
-        passData.rate,
-        passData.purchase,
-        passData.activation,
-        passData.expiry,
-        passData.service,
-        passData.cardcolor,
-        null
+        data.from,
+        data.to,
+        data.line,
+        data.type,
+        data.period,
+        data.price,
+        data.rate,
+        data.purchase,
+        data.activation,
+        data.expiry,
+        data.service,
+        data.cardcolor
     )
 }
 
@@ -155,7 +149,7 @@ function getTargetCard() {
 function addTravelPass() {
     const formData = readFormData()
     if (!formData) return
-    const pass = makeTravelPass(getCurrentCard(), formData)
+    const pass = makeTravelPass(formData)
     const targetCard = getTargetCard()
     if (!targetCard) {
         alert('Seleziona la tessera a cui abbinare il titolo')

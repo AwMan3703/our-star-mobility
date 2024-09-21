@@ -1,6 +1,5 @@
-import { baseTravelPassValidationUrl } from "./classes.js";
 import { getCardPasses, getCards, getCurrentCardIndex, setCurrentCardIndex } from "./localStorage.js";
-import { prettyDate, prettyPrice, prettyTime, redirect } from "./utility.js";
+import { passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect } from "./utility.js";
 let IDCARDS = getCards();
 let CURRENT_IDCARD_PASSES = [];
 // HANDLES
@@ -141,15 +140,47 @@ function _new_passCard(card, pass, i) {
     qrcode_block.id = `pass-card-qrcode-${crypto.randomUUID()}`;
     qrcode_block.classList.add('qrcode');
     container.appendChild(qrcode_block);
-    // @ts-ignore
+    const qrURL = `https://awman3703.github.io/our-star-mobility/passVerification.html?${passDataToURLParameters({
+        card_number: card.number,
+        holder: {
+            name: card.holder.firstName,
+            last_name: card.holder.lastName
+        },
+        pass_type: pass.type,
+        pass_activation: pass.activation,
+        pass_expiry: pass.expiry,
+        pass_from: pass.from,
+        pass_to: pass.to,
+        pass_variant: 'VARIANTE BASE',
+        pass_price: pass.price,
+        pass_purchase: pass.purchase,
+        photo_dataURL: card.photoDataURL
+    })}`;
+    // FIXME: shortening a new URL every time overloads the API and could lead to forbidden access.
+    // Bind a shortened URL to a pass when it is created instead.
+    /*
+    shortenURL(qrURL, response => {
+        console.log('Compressed pass #', i, 'URL to', response.short_url)
+        // @ts-ignore
+        const qrcode = new QRCode(qrcode_block, {
+            text: response.short_url,
+            width: 215,
+            height: 215,
+            colorDark : '#000',
+            colorLight : '#fff'
+        });
+    })
+     */
+    // TEMPORARY SOLUTION //
     const qrcode = new QRCode(qrcode_block, {
-        // The verification page won't have any pass data, but at least there's a QR code to display
-        text: pass.validationurl || baseTravelPassValidationUrl,
-        width: 215,
-        height: 215,
-        colorDark: '#000',
-        colorLight: '#fff'
-    });
+            // The verification page won't have any pass data, but at least there's a QR code to display
+            text: 'https://awman3703.github.io/our-star-mobility/passVerification.html?',
+            width: 215,
+            height: 215,
+            colorDark : '#000',
+            colorLight : '#fff'
+        });
+    // ------------------ //
     const info = document.createElement('p');
     info.classList.add('info');
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186';
