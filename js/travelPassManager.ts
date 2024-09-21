@@ -26,8 +26,8 @@ function getCurrentCard() {
     return IDCARDS[getCurrentCardIndex()]
 }
 
-function removeIDCard(cardNumber: string) {
-    const updatedCards = IDCARDS.filter(card => card.number !== cardNumber)
+function removeIDCard(card: IDCard) {
+    const updatedCards = IDCARDS.filter(listCard => listCard.number !== card.number)
     setCards(updatedCards)
 }
 
@@ -154,9 +154,9 @@ remove_IDCard_button.addEventListener('click', _ => {
     const card = getCurrentCard()
     if (confirm(
         'Vuoi davvero eliminare la tessera ' +
-        `${card.number} (${card.holder.firstName} ${card.holder.lastName})` +
-        ' e i titoli associati? L\'operazione non è reversibile.'
-    )) { removeIDCard(card.number) }
+        `${card.number} (${card.holder.firstName} ${card.holder.lastName})?` +
+        ' L\'operazione non è reversibile.'
+    )) { removeIDCard(card) }
     redirect('index.html')
 })
 
