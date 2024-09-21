@@ -83,7 +83,7 @@ export class TravelPass {
             });
         }
         // If we have no card, but there already is a validation url, the pass is complete
-        if (validationurl) {
+        else if (validationurl) {
             return;
         }
         // If there's neither... whoops
