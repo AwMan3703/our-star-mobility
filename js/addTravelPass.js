@@ -1,6 +1,6 @@
 import { TravelPass } from "./classes.js";
 import { getCardPasses, getCards, getCurrentCardIndex, setCardPasses } from "./localStorage.js";
-import { capitalize } from "./utility.js";
+import { capitalize, redirect } from "./utility.js";
 // CONSTANTS
 const IDCARDS = getCards();
 const card_selector_container = document.getElementById('IDCard-selector');
@@ -123,7 +123,7 @@ function addTravelPass() {
     const pass = makeTravelPass(targetCard, formData);
     saveTravelPass(targetCard, pass);
     alert(`Titolo aggiunto alla tessera ${targetCard.number}`);
-    //redirect('index.html')
+    redirect('index.html');
 }
 // SCRIPT
 // Disable all inputs until the disclaimer is accepted

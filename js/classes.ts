@@ -111,7 +111,7 @@ export class TravelPass {
             })}`
             trueValidationUrl = encodeURIComponent(trueValidationUrl)
             // Shorten the true validation URL, then set this.validationurl to the result
-            shortenURL(trueValidationUrl, response => {
+            shortenURL(trueValidationUrl, response => { // FIXME: fails (400 Bad Request)
                 this.validationurl = response.short_url
             })
         }

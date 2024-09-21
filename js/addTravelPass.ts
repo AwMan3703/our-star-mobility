@@ -163,7 +163,7 @@ function addTravelPass() {
     const pass = makeTravelPass(targetCard, formData)
     saveTravelPass(targetCard, pass)
     alert(`Titolo aggiunto alla tessera ${targetCard.number}`)
-    //redirect('index.html')
+    redirect('index.html')
 }
 
 
