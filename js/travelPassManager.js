@@ -16,8 +16,8 @@ function getCurrentCard() {
     // @ts-ignore
     return IDCARDS[getCurrentCardIndex()];
 }
-function removeIDCard(cardNumber) {
-    const updatedCards = IDCARDS.filter(card => card.number !== cardNumber);
+function removeIDCard(card) {
+    const updatedCards = IDCARDS.filter(listCard => listCard.number !== card.number);
     setCards(updatedCards);
 }
 function _new_travelPassSelector(pass, index) {
@@ -127,9 +127,9 @@ remove_pass_button.addEventListener('click', _ => {
 remove_IDCard_button.addEventListener('click', _ => {
     const card = getCurrentCard();
     if (confirm('Vuoi davvero eliminare la tessera ' +
-        `${card.number} (${card.holder.firstName} ${card.holder.lastName})` +
-        ' e i titoli associati? L\'operazione non è reversibile.')) {
-        removeIDCard(card.number);
+        `${card.number} (${card.holder.firstName} ${card.holder.lastName})?` +
+        ' L\'operazione non è reversibile.')) {
+        removeIDCard(card);
     }
     redirect('index.html');
 });

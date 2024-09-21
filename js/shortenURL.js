@@ -2,7 +2,7 @@
 export function shortenURL(url, callback) {
     const APIUrl = 'https://spoo.me/';
     const data = new URLSearchParams();
-    data.append('url', url);
+    data.append('url', encodeURIComponent(url));
     const xhr = new XMLHttpRequest();
     xhr.open('POST', APIUrl, true);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');

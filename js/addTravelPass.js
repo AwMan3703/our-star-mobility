@@ -1,6 +1,6 @@
 import { TravelPass } from "./classes.js";
-import { getCardPasses, getCards, setCardPasses } from "./localStorage.js";
-import { capitalize, redirect } from "./utility.js";
+import { getCardPasses, getCards, getCurrentCardIndex, setCardPasses } from "./localStorage.js";
+import { capitalize } from "./utility.js";
 // CONSTANTS
 const IDCARDS = getCards();
 const card_selector_container = document.getElementById('IDCard-selector');
@@ -8,6 +8,9 @@ const form_inputs = document.querySelectorAll('#TravelPass-form input, #TravelPa
 const cardSelector_inputs = document.querySelectorAll('#IDCard-selector input, #IDCard-selector button');
 const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox');
 // FUNCTIONS
+function getCurrentCard() {
+    return IDCARDS[getCurrentCardIndex()];
+}
 function _new_IDCardSelector(card, index) {
     const container = document.createElement('div');
     container.classList.add('card-selector-container');
@@ -90,8 +93,9 @@ function readFormData() {
         };
     }
 }
-function makeTravelPass(data) {
-    return new TravelPass(data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.activation, data.expiry, data.service, data.cardcolor);
+function makeTravelPass(card, data) {
+    return new TravelPass(card, data.from, data.to, data.line, data.type, data.period, data.price, data.rate, data.purchase, data.activation, data.expiry, data.service, data.cardcolor, null // Creating a new pass, so it's fine to call the spoo.me API to shorten the validation URL
+    );
 }
 function saveTravelPass(card, pass) {
     const savedPasses = getCardPasses(card);
@@ -111,15 +115,15 @@ function addTravelPass() {
     const formData = readFormData();
     if (!formData)
         return;
-    const pass = makeTravelPass(formData);
     const targetCard = getTargetCard();
     if (!targetCard) {
         alert('Seleziona la tessera a cui abbinare il titolo');
         return;
     }
+    const pass = makeTravelPass(targetCard, formData);
     saveTravelPass(targetCard, pass);
     alert(`Titolo aggiunto alla tessera ${targetCard.number}`);
-    redirect('index.html');
+    //redirect('index.html')
 }
 // SCRIPT
 // Disable all inputs until the disclaimer is accepted

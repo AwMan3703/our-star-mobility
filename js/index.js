@@ -1,3 +1,4 @@
+import { baseTravelPassValidationUrl } from "./classes.js";
 import { getCardPasses, getCards, getCurrentCardIndex, setCurrentCardIndex } from "./localStorage.js";
 import { passDataToURLParameters, prettyDate, prettyPrice, prettyTime, redirect } from "./utility.js";
 let IDCARDS = getCards();
@@ -171,16 +172,15 @@ function _new_passCard(card, pass, i) {
         });
     })
      */
-    // TEMPORARY SOLUTION //
+    // @ts-ignore
     const qrcode = new QRCode(qrcode_block, {
-            // The verification page won't have any pass data, but at least there's a QR code to display
-            text: 'https://awman3703.github.io/our-star-mobility/passVerification.html?',
-            width: 215,
-            height: 215,
-            colorDark : '#000',
-            colorLight : '#fff'
-        });
-    // ------------------ //
+        // The verification page won't have any pass data, but at least there's a QR code to display
+        text: pass.validationurl ? pass.validationurl : baseTravelPassValidationUrl,
+        width: 215,
+        height: 215,
+        colorDark: '#000',
+        colorLight: '#fff'
+    });
     const info = document.createElement('p');
     info.classList.add('info');
     info.innerHTML = 'STAR Mobility S.p.A.<br>Viale Italia, 100 26900 Lodi C.F. e P.Iva 01927790186';

@@ -1,5 +1,8 @@
 // CLASSES
 
+import {passDataToURLParameters} from "./utility.js";
+import {shortenURL} from "./shortenURL.js";
+
 export class Human {
     constructor(firstName: string, lastName: string, birthDate: Date, TAXID: string) {
         this.firstName = firstName
@@ -66,8 +69,11 @@ export class IDCard {
     }
 }
 
+// The page that validates passes, (parameters will later be appended to it to tell it what data to display)
+export const baseTravelPassValidationUrl = 'https://awman3703.github.io/our-star-mobility/passVerification.html'
+
 export class TravelPass {
-    constructor(from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, activation: Date, expiry: Date, service: string, cardcolor: string) {
+    constructor(card: IDCard | null, from: string, to: string, line: string, type: string, period: string, price: number, rate: string, purchase: Date, activation: Date, expiry: Date, service: string, cardcolor: string, validationurl: string | null) {
         this.from = from
         this.to = to
         this.line = line
@@ -80,7 +86,43 @@ export class TravelPass {
         this.expiry = expiry
         this.service = service
         this.cardcolor = cardcolor
+        this.validationurl = validationurl ? validationurl : ""
 
+        // If there is a card, generate/update the validation url based on it
+        if (card && !validationurl) {
+            // Create and shorten a validation url, so the API doesn't need to be called every time the pass is displayed
+            this.validationurl = baseTravelPassValidationUrl // Set to this until the API responds
+            // Compute the actual validation URL
+            let trueValidationUrl = `${baseTravelPassValidationUrl}?${passDataToURLParameters({
+                card_number: card.number,
+                holder: {
+                    name: card.holder.firstName,
+                    last_name: card.holder.lastName
+                },
+                pass_type: this.type,
+                pass_activation: this.activation,
+                pass_expiry: this.expiry,
+                pass_from: this.from,
+                pass_to: this.to,
+                pass_variant: 'VARIANTE BASE', // I don't really know what this means
+                pass_price: this.price,
+                pass_purchase: this.purchase,
+                photo_dataURL: card.photoDataURL
+            })}`
+            trueValidationUrl = encodeURIComponent(trueValidationUrl)
+            // Shorten the true validation URL, then set this.validationurl to the result
+            shortenURL(trueValidationUrl, response => {
+                this.validationurl = response.short_url
+            })
+        }
+
+        // If we have no card, but there already is a validation url, the pass is complete
+        if (validationurl) { return }
+
+        // If there's neither... whoops
+        else if (!card && !validationurl) {
+            console.error("Created TravelPass with no validation URL. Please provide an URL or an IDCard")
+        }
     }
     // boarding
     from: string
@@ -106,6 +148,8 @@ export class TravelPass {
     service: string
     // Color for the pass card
     cardcolor: string
+    // URL to validate this pass
+    validationurl: string
 
     static FromJSON(json:{
         from: string
@@ -120,8 +164,10 @@ export class TravelPass {
         expiry: string
         service: string
         cardcolor: string
+        validationurl: string
     }) {
         return new TravelPass(
+            null, // Since we already have a validation URL
             json.from,
             json.to,
             json.line,
@@ -133,7 +179,8 @@ export class TravelPass {
             new Date(json.activation),
             new Date(json.expiry),
             json.service,
-            json.cardcolor
+            json.cardcolor,
+            json.validationurl
         )
     }
     toJSON() {
@@ -149,7 +196,8 @@ export class TravelPass {
             activation: this.activation.toJSON(),
             expiry: this.expiry.toJSON(),
             service: this.service,
-            cardcolor: this.cardcolor
+            cardcolor: this.cardcolor,
+            validationurl: this.validationurl
         }
     }
 }

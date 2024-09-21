@@ -1,5 +1,5 @@
 import {IDCard, TravelPass} from "./classes.js";
-import {getCardPasses, getCards, setCardPasses} from "./localStorage.js";
+import {getCardPasses, getCards, getCurrentCardIndex, setCardPasses} from "./localStorage.js";
 import {capitalize, redirect} from "./utility.js";
 
 
@@ -14,6 +14,10 @@ const disclaimer_checkbox = document.getElementById('disclaimer-agree-checkbox')
 
 
 // FUNCTIONS
+
+function getCurrentCard() {
+    return IDCARDS[getCurrentCardIndex()]
+}
 
 function _new_IDCardSelector(card: IDCard, index: number) {
     const container = document.createElement('div')
@@ -102,7 +106,7 @@ function readFormData() {
     }
 }
 
-function makeTravelPass(data: {
+function makeTravelPass(card: IDCard, data: {
     from: string;
     to: string;
     line: string;
@@ -117,6 +121,7 @@ function makeTravelPass(data: {
     cardcolor: string;
 }):TravelPass {
     return new TravelPass(
+        card,
         data.from,
         data.to,
         data.line,
@@ -128,7 +133,8 @@ function makeTravelPass(data: {
         data.activation,
         data.expiry,
         data.service,
-        data.cardcolor
+        data.cardcolor,
+        null // Creating a new pass, so it's fine to call the spoo.me API to shorten the validation URL
     )
 }
 
@@ -149,15 +155,15 @@ function getTargetCard() {
 function addTravelPass() {
     const formData = readFormData()
     if (!formData) return
-    const pass = makeTravelPass(formData)
     const targetCard = getTargetCard()
     if (!targetCard) {
         alert('Seleziona la tessera a cui abbinare il titolo')
         return
     }
+    const pass = makeTravelPass(targetCard, formData)
     saveTravelPass(targetCard, pass)
     alert(`Titolo aggiunto alla tessera ${targetCard.number}`)
-    redirect('index.html')
+    //redirect('index.html')
 }
 
 

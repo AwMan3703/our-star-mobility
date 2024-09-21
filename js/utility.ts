@@ -72,7 +72,7 @@ export function passDataToURLParameters(data: {
     raw = c(raw, 'pp', prettyDate(data.pass_purchase))
     //raw = c(raw, 'pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
 
-    return encodeURIComponent(raw)
+    return raw
 }
 
 export function passDataFromURL(search: string) {
