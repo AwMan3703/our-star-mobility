@@ -109,7 +109,6 @@ export class TravelPass {
                 pass_purchase: this.purchase,
                 photo_dataURL: card.photoDataURL
             })}`
-            trueValidationUrl = encodeURIComponent(trueValidationUrl)
             // Shorten the true validation URL, then set this.validationurl to the result
             shortenURL(trueValidationUrl, response => { // FIXME: fails (400 Bad Request)
                 this.validationurl = response.short_url
@@ -117,7 +116,7 @@ export class TravelPass {
         }
 
         // If we have no card, but there already is a validation url, the pass is complete
-        if (validationurl) { return }
+        else if (validationurl) { return }
 
         // If there's neither... whoops
         else if (!card && !validationurl) {

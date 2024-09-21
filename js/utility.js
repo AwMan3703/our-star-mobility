@@ -52,7 +52,7 @@ export function passDataToURLParameters(data) {
     raw = c(raw, 'ppr', String(data.pass_price));
     raw = c(raw, 'pp', prettyDate(data.pass_purchase));
     //raw = c(raw, 'pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
-    return raw;
+    return encodeURIComponent(raw);
 }
 export function passDataFromURL(search) {
     const URLParameters = new URLSearchParams(search);
