@@ -41,18 +41,18 @@ export function passDataToURLParameters(data) {
     const c = (s, k, v) => {
         return `${s}&${k}=${v}`;
     };
-    let raw = 'cn=' + data.card_number;
-    raw = c(raw, 'hn', data.holder.name);
-    raw = c(raw, 'hln', data.holder.last_name);
-    raw = c(raw, 'pty', data.pass_type);
-    raw = c(raw, 'pvd', `${prettyDate(data.pass_activation)} - ${prettyDate(data.pass_expiry)}`);
-    raw = c(raw, 'pf', data.pass_from);
-    raw = c(raw, 'pt', data.pass_to);
-    raw = c(raw, 'pv', data.pass_variant);
-    raw = c(raw, 'ppr', String(data.pass_price));
-    raw = c(raw, 'pp', prettyDate(data.pass_purchase));
-    //raw = c(raw, 'pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
-    return raw;
+    let params = 'cn=' + data.card_number;
+    params = c(params, 'hn', data.holder.name);
+    params = c(params, 'hln', data.holder.last_name);
+    params = c(params, 'pty', data.pass_type);
+    params = c(params, 'pvd', `${prettyDate(data.pass_activation)} - ${prettyDate(data.pass_expiry)}`);
+    params = c(params, 'pf', data.pass_from);
+    params = c(params, 'pt', data.pass_to);
+    params = c(params, 'pv', data.pass_variant);
+    params = c(params, 'ppr', String(data.pass_price));
+    params = c(params, 'pp', prettyDate(data.pass_purchase));
+    //params = c(params, 'pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
+    return params;
 }
 export function passDataFromURL(search) {
     const URLParameters = new URLSearchParams(search);

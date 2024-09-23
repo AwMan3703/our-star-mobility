@@ -15,7 +15,7 @@ function setElementText(id: string, text: string) {
 // check if the pass is valid, then set the page evaluation label accordingly
 // @ts-ignore
 const passExpiry = new Date(URLParameters.get('expiry'))
-const isPassValid = passExpiry >= new Date(Date()) || true
+const isPassValid = passExpiry >= new Date() || true
 
 const evaluationIcon = document.getElementById('evaluation-icon')
 // @ts-ignore
