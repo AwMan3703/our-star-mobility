@@ -1,14 +1,13 @@
 import { passDataFromURL } from "./utility.js";
 // SCRIPT
-const URLParameters = new URLSearchParams(window.location.search);
 function setElementText(id, text) {
     const e = document.getElementById(id) || document.querySelector(id);
     // @ts-ignore
     e.textContent = text;
 }
+const passData = passDataFromURL(window.location.search);
 // check if the pass is valid, then set the page evaluation label accordingly
-// @ts-ignore
-const passExpiry = new Date(URLParameters.get('expiry'));
+const passExpiry = new Date(passData.pass_expiry);
 const isPassValid = passExpiry >= new Date() || true;
 const evaluationIcon = document.getElementById('evaluation-icon');
 // @ts-ignore
@@ -20,7 +19,6 @@ evaluationIcon.style.color = isPassValid ? 'green' : 'red';
 setElementText('evaluation', `Abbonamento ${isPassValid ? 'Valido' : 'Scaduto'}!`);
 // @ts-ignore
 document.getElementById('evaluation').style.color = isPassValid ? 'green' : 'red';
-const passData = passDataFromURL(window.location.search);
 // compile a bunch of elements with url parameter values
 setElementText('IDCard-number', passData.card_number);
 setElementText('holder-lastname', passData.holder.last_name);
@@ -31,7 +29,7 @@ setElementText('travelPass-validity', passData.pass_validity);
 setElementText('travelPass-from', passData.pass_from);
 setElementText('travelPass-to', passData.pass_to);
 setElementText('travelPass-variant', passData.pass_variant);
-setElementText('travelPass-price', passData.pass_price);
+setElementText('travelPass-price', parseFloat(passData.pass_price).toFixed(2));
 setElementText('travelPass-purchase', passData.pass_purchase);
 // @ts-ignore
 document.getElementById('IDCard-photo').src = passData.photo_dataURL;

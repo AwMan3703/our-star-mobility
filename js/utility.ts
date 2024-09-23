@@ -86,6 +86,8 @@ export function passDataFromURL(search: string) {
         },
         pass_type: URLParameters.get('pty') || 'N/A',
         pass_validity: URLParameters.get('pvd') || 'N/A',
+        // @ts-ignore
+        pass_expiry: new Date(URLParameters.get('pvd').split('-')[1]) || 'N/A',
         pass_from: URLParameters.get('pf') || 'N/A',
         pass_to: URLParameters.get('pt') || 'N/A',
         pass_variant: URLParameters.get('pv') || 'N/A',
