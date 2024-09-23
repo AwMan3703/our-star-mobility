@@ -91,6 +91,6 @@ export function passDataFromURL(search: string) {
         pass_variant: URLParameters.get('pv') || 'N/A',
         pass_price: URLParameters.get('ppr') || 'N/A',
         pass_purchase: URLParameters.get('pp') || 'N/A',
-        photo_dataURL: URLParameters.get('pic') || 'N/A',
+        photo_dataURL: URLParameters.get('pic') || '-',
     };
 }
