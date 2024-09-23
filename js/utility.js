@@ -13,13 +13,14 @@ export function toggleClass(element, className) {
 export function capitalize(text) {
     return text[0].toUpperCase() + text.substring(1, text.length);
 }
-const fillZeros = (n, expected_length) => {
+export function fillZeros(n, expected_length, fill_before = false) {
     const nsl = String(n).length;
+    const filler = '0'.repeat(expected_length - nsl);
     if (nsl < expected_length)
-        return '0'.repeat(expected_length - nsl) + n;
+        return fill_before ? filler + n : n + filler;
     else
-        return n;
-};
+        return String(n);
+}
 export function prettyDate(date) {
     return '' +
         `${fillZeros(date.getDate(), 2)}/` +

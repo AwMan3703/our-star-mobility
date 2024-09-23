@@ -14,10 +14,11 @@ export function toggleClass(element: HTMLElement, className: string) {
 export function capitalize(text: string) {
     return text[0].toUpperCase() + text.substring(1, text.length)}
 
-const fillZeros = (n: number, expected_length: number) => {
+export function fillZeros(n: string | number, expected_length: number, fill_before: boolean = false) {
     const nsl = String(n).length
-    if (nsl < expected_length) return '0'.repeat(expected_length - nsl) + n
-    else return n
+    const filler = '0'.repeat(expected_length - nsl)
+    if (nsl < expected_length) return fill_before ? filler + n : n + filler
+    else return String(n)
 }
 
 export function prettyDate(date: Date) {
