@@ -1,12 +1,12 @@
 // SHORTEN URLS
 
 export function shortenURL(url: string, callback: (response: {short_url: string}) => void) {
-    const APIUrl = 'https://spoo.me/';
+    const APIUrl = 'https://spoo.me/?url=' + url;
     const data = new URLSearchParams();
     data.append('url', url);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', APIUrl, true);
+    xhr.open('POST', APIUrl, false);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
     xhr.setRequestHeader('Accept', 'application/json');
 

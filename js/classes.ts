@@ -110,7 +110,7 @@ export class TravelPass {
                 photo_dataURL: card.photoDataURL
             })}`
             // Shorten the true validation URL, then set this.validationurl to the result
-            shortenURL(trueValidationUrl, response => { // FIXME: fails (400 Bad Request)
+            shortenURL(trueValidationUrl, response => {
                 this.validationurl = response.short_url
             })
         }
