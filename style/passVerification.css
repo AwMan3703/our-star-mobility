@@ -14,6 +14,9 @@
     font-size: 13px;
   }
 }
+.pass-data {
+  text-transform: uppercase;
+}
 .form-control,
 .btn,
 .well {
