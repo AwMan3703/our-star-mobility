@@ -2,8 +2,8 @@
 
 export function shortenURL(url: string, callback: (response: {short_url: string}) => void) {
     const APIUrl = 'https://spoo.me/?url=' + url;
-    const data = new URLSearchParams();
-    data.append('url', url);
+    //const data = new URLSearchParams();
+    //data.append('url', url);
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', APIUrl, false);
@@ -21,5 +21,6 @@ export function shortenURL(url: string, callback: (response: {short_url: string}
         }
     };
 
-    xhr.send(data);
+    //xhr.send(data);
+    xhr.send();
 }

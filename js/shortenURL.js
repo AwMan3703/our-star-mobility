@@ -1,8 +1,8 @@
 // SHORTEN URLS
 export function shortenURL(url, callback) {
     const APIUrl = 'https://spoo.me/?url=' + url;
-    const data = new URLSearchParams();
-    data.append('url', url);
+    //const data = new URLSearchParams();
+    //data.append('url', url);
     const xhr = new XMLHttpRequest();
     xhr.open('POST', APIUrl, false);
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
@@ -18,5 +18,6 @@ export function shortenURL(url, callback) {
             }
         }
     };
-    xhr.send(data);
+    //xhr.send(data);
+    xhr.send();
 }
