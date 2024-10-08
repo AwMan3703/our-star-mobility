@@ -77,7 +77,7 @@ export class TravelPass {
                 photo_dataURL: card.photoDataURL
             })}`;
             // Yes, this is needed lol
-            trueValidationUrl = encodeURIComponent(encodeURI(trueValidationUrl));
+            trueValidationUrl = encodeURIComponent(trueValidationUrl);
             // Shorten the true validation URL, then set this.validationurl to the result
             shortenURL(trueValidationUrl, response => {
                 this.validationurl = response.short_url;
