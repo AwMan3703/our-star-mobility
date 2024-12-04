@@ -275,7 +275,7 @@ nav img {
 }
 @keyframes stripes-scroll {
   from {
-    background-position-x: 0%;
+    background-position-x: 0;
   }
   to {
     background-position-x: 100%;
@@ -293,7 +293,6 @@ nav img {
 }
 .pass-card .details-container hr {
   margin: 0;
-  height: 100%;
   height: 100px;
   border-width: var(--hr-width);
 }
