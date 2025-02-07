@@ -14,9 +14,9 @@ export function toggleClass(element: HTMLElement, className: string) {
 export function capitalize(text: string) {
     return text[0].toUpperCase() + text.substring(1, text.length)}
 
-export function fillZeros(n: string | number, expected_length: number, fill_before: boolean = false) {
+export function fillZeros(n: string | number, expected_length: number, fill_before: boolean = true) {
     const nsl = String(n).length
-    const filler = '0'.repeat(expected_length - nsl)
+    const filler = '0'.repeat(Math.max(0, expected_length - nsl))
     if (nsl < expected_length) return fill_before ? filler + n : n + filler
     else return String(n)
 }
@@ -84,8 +84,8 @@ export function passDataFromURL(search: string) {
         },
         pass_type: URLParameters.get('pty') || 'N/A',
         pass_validity: URLParameters.get('pvd') || 'N/A',
-        // @ts-ignore
-        pass_expiry: new Date(URLParameters.get('pvd').split('-')[1]) || 'N/A',
+        // @ts-ignore // God this is a horrible looking line
+        pass_expiry: new Date(URLParameters.get('pvd').split(' - ')[1].split('/').reverse().join('-')) || 'N/A',
         pass_from: URLParameters.get('pf') || 'N/A',
         pass_to: URLParameters.get('pt') || 'N/A',
         pass_variant: URLParameters.get('pv') || 'N/A',

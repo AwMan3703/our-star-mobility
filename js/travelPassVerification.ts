@@ -13,8 +13,7 @@ const passData = passDataFromURL(window.location.search)
 
 
 // check if the pass is valid, then set the page evaluation label accordingly
-const passExpiry = new Date(passData.pass_expiry)
-const isPassValid = passExpiry >= new Date() || true
+const isPassValid = passData.pass_expiry >= new Date()
 
 const evaluationIcon = document.getElementById('evaluation-icon')
 // @ts-ignore
