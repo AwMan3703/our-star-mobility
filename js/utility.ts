@@ -58,6 +58,7 @@ export function passDataToURLParameters(data: {
 }) {
     // concatenate url parameters
     const params = new URLSearchParams()
+    params.set('cn', data.card_number)
     params.set('hn', data.holder.name)
     params.set('hln', data.holder.last_name)
     params.set('pty', data.pass_type)
