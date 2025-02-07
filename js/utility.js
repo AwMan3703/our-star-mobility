@@ -49,7 +49,7 @@ export function passDataToURLParameters(data) {
     params.set('pv', data.pass_variant);
     params.set('ppr', String(data.pass_price));
     params.set('pp', prettyDate(data.pass_purchase));
-    // params.set('pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL
+    // params.set('pic', data.photo_dataURL) // skip this as it would make a 2000+ character URL, I have to figure it out soon
     return params.toString();
 }
 export function passDataFromURL(search) {
