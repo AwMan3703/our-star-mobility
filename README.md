@@ -10,4 +10,5 @@ Creato per testare nuovi design e possibili ottimizzazioni dell'app ufficiale _M
 - Complicazioni legali derivate dall'utilizzo del Simulatore
 - Utilizzo del Simulatore per scopi fraudolenti, di truffa o in altro modo ingannevoli
 
+> [!IMPORTANT]
 > Si raccomanda vivamente di scaricare e utilizzare esclusivamente l'app ufficiale di Star Mobility per tutte le esigenze legate ai servizi di trasporto pubblico.
