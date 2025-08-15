@@ -1,6 +1,6 @@
 Simulatore App _My STAR Mobility_ **NON UFFICIALE**.
 Creato per testare nuovi design e possibili ottimizzazioni dell'app ufficiale _My STAR Mobility_ (App Store & Google Play Store).
-## ⚠️ Esclusivamente per scopi educativi – *NON* UTILIZZARE IN SOSTITUZIONE DI UN TITOLO DI VIAGGIO VALIDO ⚠️
+## ⚠️ Esclusivamente destinato a scopi educativi – *NON* UTILIZZARE IN SOSTITUZIONE DI UN TITOLO DI VIAGGIO AUTENTICO ⚠️
 #### Questo file fa riferimento al sito web ```https://awman3703.github.io/our-star-mobility/``` (il "Simulatore" da qui in poi), all'utente GitHub che lo ha sviluppato (lo "Sviluppatore" da qui in poi) e a STAR Mobility s.p.a. ("Star Mobility" da qui in poi).
 #### Il Simulatore e il suo Sviluppatore non sono in alcun modo affiliati o associati a Star Mobility.
 #### Il Simulatore non può, (né vuole fingere di poter) rilasciare o esibire titoli di viaggio validi.
