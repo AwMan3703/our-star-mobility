@@ -1,3 +1,4 @@
+<!-- Le porzioni di testo racchiuse tra parentesi angolari e simboli come #, >, [, ] e `, hanno scopo puramente tecnico e non sono rilevanti. -->
 <sup><sup><sup>Il testo di seguito fa riferimento al sito web ```https://awman3703.github.io/our-star-mobility/``` (il "Simulatore" da qui in poi), all'utente e account GitHub da cui la repository del Simulatore origina (lo "Sviluppatore" da qui in poi), a STAR Mobility s.p.a. ("STAR Mobility" o "STAR" da qui in poi), all' applicazione ufficiale "My STAR Mobility" per la visualizzazione dei dati relativi agli abbonamenti acquistati presso STAR Mobility ("My STAR Mobility", "Applicazione" o "App" da qui in poi) e all'utente che accede al Simulatore e ne fa utilizzo (l'"Utente" da qui in poi).</sup></sup></sup>
 
 Creato per prototipare nuovi design e ottimizzazioni dell'app ufficiale _My STAR Mobility_.
