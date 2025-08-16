@@ -12,4 +12,4 @@ Creato per prototipare nuovi design e ottimizzazioni dell'app ufficiale _My STAR
 - Complicazioni e/o responsabilità legali derivate dall'utilizzo del Simulatore da parte dell'Utente.
 ---
 > [!IMPORTANT]
-> Si raccomanda di scaricare e utilizzare esclusivamente l'applicazione My STAR Mobility ([App Store](https://apps.apple.com/it/app/my-star-mobility/id6462401193) e [Google Play Store](https://play.google.com/store/apps/details?id=com.mercurio.mercurio_ecm.starmobility&pli=1) ufficiale per la visualizzazione di titoli di viaggio acquistati presso STAR Mobility.
+> Si raccomanda di scaricare e utilizzare esclusivamente l'applicazione My STAR Mobility ([App Store](https://apps.apple.com/it/app/my-star-mobility/id6462401193) e [Google Play Store](https://play.google.com/store/apps/details?id=com.mercurio.mercurio_ecm.starmobility&pli=1)) ufficiale per la visualizzazione di titoli di viaggio acquistati presso STAR Mobility.
