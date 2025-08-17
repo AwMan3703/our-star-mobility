@@ -2,6 +2,7 @@
 import { passDataToURLParameters } from "./utility.js";
 import { shortenURL } from "./shortenURL.js";
 export class Human {
+    // TAXID = codice fiscale
     constructor(firstName, lastName, birthDate, TAXID) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,7 +22,6 @@ export class Human {
     }
 }
 export class IDCard {
-    // TAXID = codice fiscale
     constructor(card_number, holder, photoDataURL) {
         this.number = card_number;
         this.holder = holder;
