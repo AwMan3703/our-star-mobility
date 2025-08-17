@@ -14,7 +14,7 @@
     <body>
         <div id="disclaimer-box" class="vstack material-box">
             <h3>Per favore leggere con attenzione il seguente disclaimer:</h3>
-            <iframe src="README.md"></iframe>
+            <div id="readme-container"></div>
             <div class="material-box">
                 <input type="checkbox" name="agree" id="disclaimer-agree-checkbox">
                 <label for="disclaimer-agree-checkbox">Comprendo il disclaimer e sollevo lo Sviluppatore da qualsiasi responsabilità derivante dall'utilizzo che farò del Simulatore</label>
@@ -35,6 +35,8 @@
 
         <button id="remove-IDCard-button" class="danger">Elimina tessera</button>
 
+        <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+        <script src="js/loadReadme.js" type="module"></script>
         <script src="js/travelPassManager.js" type="module"></script>
     </body>
 </html>
